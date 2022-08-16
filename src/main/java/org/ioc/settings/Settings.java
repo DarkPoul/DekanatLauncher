@@ -5,10 +5,15 @@ import java.net.URL;
 
 public class Settings {
     public static URL update;
-    public static String zipPath = System.getProperty("user.home")+"/IdeaProjects/DekanatLauncher/target";
+    public static String HomePass = System.getProperty("user.home");
+    public static String zipPath = HomePass + "/AppData/Local/Programs/main/resources/org/ioc/settings";
     public static String zipFile = "/Update.zip";
-    public static String HashFile = System.getProperty("user.home")+"/IdeaProjects/DekanatLauncher/target/Update/Update-main/Hash.txt";
-    public static String ConfigFile = System.getProperty("user.home")+"/IdeaProjects/DekanatLauncher/src/main/resources/org/ioc/settings/Config.xml";
+
+    public static String OutPutFolder = HomePass + "/AppData/Local/Programs/main/resources/org/ioc/settings/Update.zip";
+    public static String HashFile = HomePass + "/AppData/Local/Programs/main/resources/org/ioc/settings/Update/Update-main/Hash.txt";
+    public static String ConfigFile = HomePass + "/AppData/Local/Programs/main/resources/org/ioc/settings/Config.xml";
+
+
 
 
 

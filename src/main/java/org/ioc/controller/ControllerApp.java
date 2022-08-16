@@ -66,7 +66,7 @@ public class ControllerApp {
         System.out.println(Hash.getHashText());
 
 
-        downloadFile(Settings.update, "Update.zip");
+        downloadFile(Settings.update, Settings.OutPutFolder);
 
         unpackZip(Settings.zipPath, Settings.zipFile);
 
@@ -116,122 +116,8 @@ public class ControllerApp {
 
 
         login_button.setOnAction(actionEvent -> {
-//            login_box.setVisible(false);
-//            update_box.setVisible(true);
-//            try {
-//                DB.Open_DB();
-//            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
-//                e.printStackTrace();
-//            }
-//
-//            if (DB.True_connection){
-//                //////////////////////////////////////////////////////////////////////////
-//                boolean Connection_dekanat = false;
-//                DB dataBaseHandler = new DB();//Створюємо нову змінну на основі створеного нами класу
-//                ResultSet Log_pass = dataBaseHandler.Connection_Dekanat();//Викликаємо функцію з іншого класу
-//                List<String> var_1_List = new LinkedList<>();
-//                List<String> var_2_List = new LinkedList<>();//Створюємо список
-//                List<String> var_3_List = new LinkedList<>();//Створюємо список
-//                while (true) {//Запускаємо цикл на обробку даних отриманих з бази даних
-//                    try {
-//                        if (!Log_pass.next()) break;
-//                    } catch (SQLException throwables) {
-//                        throwables.printStackTrace();
-//                    }
-//                    String Login_string = null;
-//                    String Password_string = null;
-//                    String Login_ID = null;
-//                    try {
-//                        Login_string = Log_pass.getString("Login");
-//                        Password_string = Log_pass.getString("password");
-//                        Login_ID = Log_pass.getString("ID_Faculty");
-//                    } catch (SQLException throwables) {
-//                        throwables.printStackTrace();
-//                    }
-//                    var_1_List.add(Login_string);//додаємо отримані результати у список
-//                    var_2_List.add(Password_string);
-//                    var_3_List.add(Login_ID);
-//                }
-//                for (int i = 0; i < var_1_List.size(); i++) {
-//                    if(Objects.equals(login_field.getText(), var_1_List.get(i))){
-//                        Connection_dekanat = Objects.equals(pass_field.getText(), var_2_List.get(i));
-//
-//                        System.out.println(var_1_List.get(i));
-//                        System.out.println(var_3_List.get(i));
-//                    }
-//                }
-//
-//                if (Connection_dekanat) {
-//                    System.out.println("to new class");
-//                }
-//                else {
-//                    System.out.println("Connection failed...");
-//                }
-//            } else System.out.println("Connection failed...");
-
-
-//            try {
-//                URL url = new URL("https://github.com/DarkPoul/vers_date/archive/refs/heads/main.zip");
-//            } catch (MalformedURLException e) {
-//                throw new RuntimeException(e);
-//            }
-            //Path path = Paths.get("https://github.com/DarkPoul/vers_date/archive/refs/heads/main.zip").hashCode();
-            //System.out.println(Paths.get("github.com/DarkPoul/vers_date/blob/main/18.08.2022").getFileName());
-            //Path of = Path.of("github.com/DarkPoul/vers_date/archive/refs/heads/main.zip");
-            //System.out.println(Paths.get("github.com/DarkPoul/vers_date/archive/refs/heads/main.zip").hashCode());
-            //System.out.println(of.hashCode());
-            //int hesh = of.hashCode();
-            LinkedList<String> property = new LinkedList<>();
-//            try{
-//                DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-//                Document document = documentBuilder.parse("src/main/resources/org/ioc/settings/Config.xml");
-//                Node root = document.getDocumentElement();
-//                NodeList books = root.getChildNodes();
-//
-//                for (int i = 0; i < books.getLength(); i++) {
-//                    Node book = books.item(i);
-//                    // Если нода не текст, то это книга - заходим внутрь
-//                    if (book.getNodeType() != Node.TEXT_NODE) {
-//                        NodeList bookProps = book.getChildNodes();
-//                        for(int j = 0; j < bookProps.getLength(); j++) {
-//                            Node bookProp = bookProps.item(j);
-//                            // Если нода не текст, то это один из параметров книги - печатаем
-//                            if (bookProp.getNodeType() != Node.TEXT_NODE) {
-//                                System.out.println(bookProp.getNodeName() + ":" + bookProp.getChildNodes().item(0).getTextContent());
-//                                property.add(bookProp.getNodeName() + ":" + bookProp.getChildNodes().item(0).getTextContent());
-//                            }
-//                        }
-//                        System.out.println("===========>>>>");
-//                    }
-//                }
-//            } catch (ParserConfigurationException ex) {
-//                ex.printStackTrace();
-//            } catch (IOException | SAXException e) {
-//                throw new RuntimeException(e);
-//            }
-            //int hesh_old = Integer.parseInt(property.get(1).split(":")[1]);
-            //login_field.setText(property.get(0).split(":")[1]);
-            //if (hesh_old != of.hashCode()){
                 login_box.setVisible(false);
                 update_box.setVisible(true);
-            //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         });
         update_button.setOnAction(actionEvent -> {
             login_box.setVisible(true);

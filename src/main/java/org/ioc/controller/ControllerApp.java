@@ -118,6 +118,13 @@ public class ControllerApp {
         login_button.setOnAction(actionEvent -> {
                 login_box.setVisible(false);
                 update_box.setVisible(true);
+            if (login_field.getText() != LoginName){
+                try {
+                    FileHandler.NewLogin("<login_dekanat>"+LoginName+"</login_dekanat>", "<login_dekanat>"+login_field.getText()+"</login_dekanat>");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            };
         });
         update_button.setOnAction(actionEvent -> {
             login_box.setVisible(true);

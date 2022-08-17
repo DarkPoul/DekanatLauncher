@@ -64,14 +64,12 @@ public class ControllerApp {
     public static String LoginName;
     public static String HashCodOld;
     public static String hash = "fail";
+    public static String Id_User = "";
 
     @FXML
     void initialize() throws IOException, InterruptedException {
         System.out.println(Hash.getHashText());
-
-
         downloadFile(Settings.update, Settings.OutPutFolder);
-
         unpackZip(Settings.zipPath, Settings.zipFile);
 
 
@@ -139,6 +137,7 @@ public class ControllerApp {
                 for (int i = 0; i < var_1_List.size(); i++) {
                     if(Objects.equals(login_field.getText(), var_1_List.get(i))){
                         Connection_dekanat = Objects.equals(pass_field.getText(), var_2_List.get(i));
+                        Id_User = var_3_List.get(i);
                     }
                 }
 

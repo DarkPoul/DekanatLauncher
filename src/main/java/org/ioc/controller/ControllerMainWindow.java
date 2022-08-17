@@ -58,9 +58,9 @@ public class ControllerMainWindow {
     }
 
     public void menu(ActionEvent actionEvent) {
-        box.setVisible(!box.isVisible());
-        exit.setVisible(!exit.isVisible());
-        icon.setVisible(!icon.isVisible());
+//        box.setVisible(!box.isVisible());
+//        exit.setVisible(!exit.isVisible());
+//        icon.setVisible(!icon.isVisible());
     }
 
     public void suprovid(ActionEvent actionEvent) {
@@ -105,7 +105,7 @@ public class ControllerMainWindow {
 
     public void CreateGroup(ActionEvent actionEvent) {
         try {
-            App.setRoot("gui/Creating_group");
+            App.setRoot("gui/CreateGroup");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -162,4 +162,5 @@ public class ControllerMainWindow {
             throw new RuntimeException(e);
         }
     }
+
 }

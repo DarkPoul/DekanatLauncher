@@ -4,35 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="446bcd77-3a16-4c57-b9a4-226251071ebf" name="Changes" comment="Good Update">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_Authentication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerMainWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/MainWindow.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/test.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/image/Error_back.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/image/Error_up.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/image/ask.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/image/back.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/image/document.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/image/document_edit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/image/exit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/image/info.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/image/menu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/image/pencil.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/image/people.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/image/print.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/image/settings.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/image/warning.png" afterDir="false" />
+    <list default="true" id="446bcd77-3a16-4c57-b9a4-226251071ebf" name="Changes" comment="updateMainWindow">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_AddStudent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_CreateGroup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerAddStudent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerCreateGroup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/CreateGroup.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/add_student.fxml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/settings/Update.zip" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/settings/Update/Update-main/Hash.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_Authentication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/UpdateDekanat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/UpdateDekanat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/settings/Config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/settings/Config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerMainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerMainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/MainWindow.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -67,13 +53,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/S_varog/IdeaProjects/DekanatLauncher/src/main/java/org/ioc/controller"
+    "last_opened_file_path": "C:/Users/S_varog/IdeaProjects/DekanatLauncher/src/main/resources/org/ioc/gui"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\S_varog\IdeaProjects\DekanatLauncher\src\main\java\org\ioc\controller" />
       <recent name="C:\Users\S_varog\IdeaProjects\DekanatLauncher\src\main\resources\org\ioc\gui" />
+      <recent name="C:\Users\S_varog\IdeaProjects\DekanatLauncher\src\main\java\org\ioc\controller" />
       <recent name="C:\Users\S_varog\IdeaProjects\DekanatLauncher\src\main\resources\org\ioc\settings" />
       <recent name="C:\Users\S_varog\IdeaProjects\DekanatLauncher\src\main\resources\org\ioc\image" />
     </key>
@@ -114,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660721286086</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="updateMainWindow">
+      <created>1660725146310</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1660725146310</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -131,6 +124,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Good Update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Good Update" />
+    <MESSAGE value="updateMainWindow" />
+    <option name="LAST_COMMIT_MESSAGE" value="updateMainWindow" />
   </component>
 </project>

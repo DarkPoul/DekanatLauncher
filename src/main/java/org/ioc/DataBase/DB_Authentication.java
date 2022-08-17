@@ -39,6 +39,7 @@ public class DB_Authentication{//Головний клас підключенн�
             resultSet = prSt.executeQuery();
         } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
+
         }
         return resultSet;
     }

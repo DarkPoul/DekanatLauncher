@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #a1d1a3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ioc.controller.ControllerMainWindow">
    <ToolBar orientation="VERTICAL" prefHeight="499.0" prefWidth="80.0" style="-fx-background-color: #abc9ac;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <Button alignment="BASELINE_LEFT" disable="true" mnemonicParsing="false" onAction="#menu" prefHeight="40.0" prefWidth="70.0">
+      <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#menu" prefHeight="40.0" prefWidth="70.0">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0">
                <Image url="@../image/menu.png" />

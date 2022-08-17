@@ -13,16 +13,19 @@ import java.io.IOException;
  */
 public class App extends Application {
 
+    public static int x = 1024;
+    public static int y = 768;
+
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("gui/Authentication"), 640, 480);
+        scene = new Scene(loadFXML("gui/Authentication"), x, y);
         stage.setScene(scene);
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 

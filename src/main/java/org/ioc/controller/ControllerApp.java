@@ -1,15 +1,16 @@
 package org.ioc.controller;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.BreakIterator;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
@@ -22,14 +23,15 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.ioc.App;
+import org.ioc.DataBase.DB_Authentication;
 import org.ioc.models.XmlParser;
 
 import org.ioc.settings.Hash;
 import org.ioc.settings.Settings;
 
-import static org.ioc.settings.Settings.BatFile;
+//import static org.ioc.settings.Settings.BatFile;
 
-//import org.ioc.DB;
 
 
 public class ControllerApp {
@@ -65,8 +67,6 @@ public class ControllerApp {
 
     @FXML
     void initialize() throws IOException, InterruptedException {
-        System.out.println("ooooooo");
-
         System.out.println(Hash.getHashText());
 
 
@@ -80,19 +80,15 @@ public class ControllerApp {
         thread.start();
 
         thread.join();
-
-        System.out.println(LoginName);
         login_field.setText(String.valueOf(LoginName));
 
 
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(Settings.HashFile))) {
            hash = reader.readLine();
         } catch (IOException e) {
-            System.out.println("test2");
+            e.printStackTrace();
         }
 
-        System.out.println(hash);
-        System.out.println(HashCodOld);
         if (!Objects.equals(hash, HashCodOld)){
             update_box.setVisible(true);
             login_box.setVisible(false);
@@ -105,32 +101,88 @@ public class ControllerApp {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-            };
+            }
+            try {
+                DB_Authentication.Open_DB();
+            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+
+            if (DB_Authentication.True_connection){
+                //////////////////////////////////////////////////////////////////////////
+                boolean Connection_dekanat = false;
+                DB_Authentication dataBaseHandler = new DB_Authentication();//Створюємо нову змінну на основі створеного нами класу
+                ResultSet Log_pass = dataBaseHandler.Connection_Dekanat();//Викликаємо функцію з іншого класу
+                List<String> var_1_List = new LinkedList<>();
+                List<String> var_2_List = new LinkedList<>();//Створюємо список
+                List<String> var_3_List = new LinkedList<>();//Створюємо список
+                while (true) {//Запускаємо цикл на обробку даних отриманих з бази даних
+                    try {
+                        if (!Log_pass.next()) break;
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                    String Login_string = null;
+                    String Password_string = null;
+                    String Login_ID = null;
+                    try {
+                        Login_string = Log_pass.getString("Login");
+                        Password_string = Log_pass.getString("password");
+                        Login_ID = Log_pass.getString("ID_Faculty");
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                    var_1_List.add(Login_string);//додаємо отримані результати у список
+                    var_2_List.add(Password_string);
+                    var_3_List.add(Login_ID);
+                }
+                for (int i = 0; i < var_1_List.size(); i++) {
+                    if(Objects.equals(login_field.getText(), var_1_List.get(i))){
+                        Connection_dekanat = Objects.equals(pass_field.getText(), var_2_List.get(i));
+                    }
+                }
+
+                if (Connection_dekanat) {
+                    System.out.println("to new class");
+                    try {
+                        App.setRoot("gui/MainWindow");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                else {
+                    System.out.println("Connection failed...");
+                }
+            } else System.out.println("Connection failed...");
         });
         update_button.setOnAction(actionEvent -> {
-            try {
-                FileHandler.NewLogin("<hesh>"+HashCodOld+"</hesh>", "<hesh>"+hash+"</hesh>");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            Thread up_dekanat = new UpdateDekanat();
-            up_dekanat.start();
-            try {
-                up_dekanat.join();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            if (!up_dekanat.isAlive()){
-                unpackZip(Settings.zipPath, Settings.zipFile);
-                try {
-                    Runtime.getRuntime().exec("cmd /c " + BatFile);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                Close_window();
-            }
+            login_box.setVisible(true);
+            update_box.setVisible(false);
+        });
+        update_button.setOnAction(actionEvent -> {
+//            try {
+//                FileHandler.NewLogin("<hesh>"+HashCodOld+"</hesh>", "<hesh>"+hash+"</hesh>");
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//
+//            Thread up_dekanat = new UpdateDekanat();
+//            up_dekanat.start();
+//            try {
+//                up_dekanat.join();
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//
+//            if (!up_dekanat.isAlive()){
+//                unpackZip(Settings.zipPath, Settings.zipFile);
+//                try {
+//                    Runtime.getRuntime().exec("cmd /c " + BatFile);
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                }
+//                Close_window();
+//            }
 
 
         });

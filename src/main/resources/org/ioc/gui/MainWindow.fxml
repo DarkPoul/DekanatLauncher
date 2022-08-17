@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #a1d1a3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ioc.controller.ControllerMainWindow">
+   <ToolBar orientation="VERTICAL" prefHeight="499.0" prefWidth="80.0" style="-fx-background-color: #abc9ac;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Button alignment="BASELINE_LEFT" disable="true" mnemonicParsing="false" onAction="#menu" prefHeight="40.0" prefWidth="70.0">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0">
+               <Image url="@../image/menu.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <MenuButton mnemonicParsing="false" prefHeight="43.0" prefWidth="70.0">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#CreateGroup" style="-fx-font-size: 16; -fx-font-family: Arial;" text="Створити групу" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#AddNewStudent" style="-fx-font-size: 16; -fx-font-family: Arial;" text="Додати нового студента" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#MigrateStudentGroup" style="-fx-font-size: 16; -fx-font-family: Arial;" text="Рознесення студентів по групам" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#AddStudent" style="-fx-font-size: 16; -fx-font-family: Arial;" text="Завантажити студентів до бази" />
+         </items>
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0">
+               <Image url="@../image/people.png" />
+            </ImageView>
+         </graphic>
+      </MenuButton>
+      <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#suprovid" prefHeight="40.0" prefWidth="70.0">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0">
+               <Image url="@../image/document.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <MenuButton mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#ViewCard" style="-fx-font-size: 16; -fx-font-family: Arial;" text="Перегляд та правка карток" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#AddMark" style="-fx-font-size: 16; -fx-font-family: Arial;" text="Введення оцінок з відомості" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#ViewBorg" style="-fx-font-size: 16; -fx-font-family: Arial;" text="Перегляд боржників" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#MigrateCourse" style="-fx-font-size: 16; -fx-font-family: Arial;" text="Переведення на курс" />
+         </items>
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0">
+               <Image url="@../image/document_edit.png" />
+            </ImageView>
+         </graphic>
+      </MenuButton>
+      <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#print" prefHeight="40.0" prefWidth="70.0">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0">
+               <Image url="@../image/print.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#modular" prefHeight="40.0" prefWidth="70.0">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0">
+               <Image url="@../image/pencil.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#ask" prefWidth="70.0">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0">
+               <Image url="@../image/ask.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#info" prefHeight="40.0" prefWidth="70.0">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0">
+               <Image url="@../image/info.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+   </ToolBar>
+   <VBox fx:id="box" alignment="TOP_CENTER" layoutX="80.0" prefHeight="600.0" prefWidth="315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="0.0">
+      <Label prefHeight="40.0" prefWidth="310.0" text="Меню">
+         <VBox.margin>
+            <Insets left="5.0" top="7.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label prefHeight="40.0" prefWidth="310.0" text="Реєстрація зарахованих студентів">
+         <VBox.margin>
+            <Insets left="5.0" top="7.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label prefHeight="40.0" prefWidth="310.0" text="Супровiд навчального процесу">
+         <VBox.margin>
+            <Insets left="5.0" top="7.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label prefHeight="40.0" prefWidth="310.0" text="Внесення змін та переведення на курс">
+         <VBox.margin>
+            <Insets left="5.0" top="7.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label prefHeight="40.0" prefWidth="310.0" text="Перегляд та друк інформації">
+         <VBox.margin>
+            <Insets left="5.0" top="7.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label prefHeight="40.0" prefWidth="310.0" text="Модульний контроль">
+         <VBox.margin>
+            <Insets left="5.0" top="7.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label prefHeight="40.0" prefWidth="310.0" text="Довідник">
+         <VBox.margin>
+            <Insets left="5.0" top="7.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label prefHeight="40.0" prefWidth="310.0" text="Про розробників">
+         <VBox.margin>
+            <Insets left="5.0" top="7.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Label>
+   </VBox>
+   <Button layoutY="579.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+      <graphic>
+         <ImageView fitHeight="35.0" fitWidth="35.0">
+            <Image url="@../image/exit.png" />
+         </ImageView>
+      </graphic>
+   </Button>
+   <Label fx:id="exit" layoutX="80.0" layoutY="557.0" prefHeight="40.0" prefWidth="95.0" text="Вихід" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="85.0">
+      <font>
+         <Font name="Arial Bold" size="16.0" />
+      </font>
+   </Label>
+   <ImageView fx:id="icon" fitHeight="250.0" fitWidth="250.0" layoutX="473.0" layoutY="114.0">
+      <Image url="@../image/logo.png" />
+   </ImageView>
+   <Label layoutX="758.0" layoutY="572.0" text="0.0.4" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <font>
+         <Font size="8.0" />
+      </font></Label>
+</AnchorPane>

@@ -21,10 +21,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.ioc.models.XmlParser;
 
 import org.ioc.settings.Hash;
 import org.ioc.settings.Settings;
+
+import static org.ioc.settings.Settings.BatFile;
 
 //import org.ioc.DB;
 
@@ -58,6 +61,7 @@ public class ControllerApp {
 
     public static String LoginName;
     public static String HashCodOld;
+    public static String hash = "fail";
 
     @FXML
     void initialize() throws IOException, InterruptedException {
@@ -72,19 +76,15 @@ public class ControllerApp {
 
 
 
-        Thread thread1 = Thread.currentThread();
-
-
-
         Thread thread = new XmlReader();
         thread.start();
-        //thread1.join();
+
         thread.join();
 
         System.out.println(LoginName);
         login_field.setText(String.valueOf(LoginName));
 
-        String hash = "fail";
+
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(Settings.HashFile))) {
            hash = reader.readLine();
         } catch (IOException e) {
@@ -98,27 +98,8 @@ public class ControllerApp {
             login_box.setVisible(false);
         }
 
-
-
-//
-
-
-
-
-
-        //XmlParser xml = new XmlParser();
-
-
-
-
-
-
-
-
         login_button.setOnAction(actionEvent -> {
-                login_box.setVisible(false);
-                update_box.setVisible(true);
-            if (login_field.getText() != LoginName){
+            if (!Objects.equals(login_field.getText(), LoginName)){
                 try {
                     FileHandler.NewLogin("<login_dekanat>"+LoginName+"</login_dekanat>", "<login_dekanat>"+login_field.getText()+"</login_dekanat>");
                 } catch (IOException e) {
@@ -127,8 +108,31 @@ public class ControllerApp {
             };
         });
         update_button.setOnAction(actionEvent -> {
-            login_box.setVisible(true);
-            update_box.setVisible(false);
+            try {
+                FileHandler.NewLogin("<hesh>"+HashCodOld+"</hesh>", "<hesh>"+hash+"</hesh>");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            Thread up_dekanat = new UpdateDekanat();
+            up_dekanat.start();
+            try {
+                up_dekanat.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            if (!up_dekanat.isAlive()){
+                unpackZip(Settings.zipPath, Settings.zipFile);
+                try {
+                    Runtime.getRuntime().exec("cmd /c " + BatFile);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Close_window();
+            }
+
+
         });
     }
 
@@ -191,6 +195,11 @@ public class ControllerApp {
         }
 
         System.out.println(true);
+    }
+
+    public void Close_window(){
+        Stage close_window = (Stage) update_button.getScene().getWindow();
+        close_window.close();
     }
 
 }

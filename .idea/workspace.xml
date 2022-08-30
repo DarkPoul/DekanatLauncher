@@ -5,46 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="446bcd77-3a16-4c57-b9a4-226251071ebf" name="Changes" comment="updateMainWindow">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_Directory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_Registration_student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerDirectory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/models/Table_Department.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/models/Table_Discipline.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/models/Table_Education.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/models/Table_Faculty.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/models/Table_Speciality.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/Directory.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_AddStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_AddStudent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_CreateGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_CreateGroup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerAddStudent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerCreateGroup.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerFor_next_course.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerMainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerMainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerModular_results_preview.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerRegistration_of_enrolled_students.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerRegistration_of_enrolled_students.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerStudent_Card.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerStudents_with_Debts.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerView_and_print.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/settings/FileHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/UpdateDekanat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/settings/UpdateDekanat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/XmlReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/settings/XmlReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/models/XmlParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/settings/XmlParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/settings/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/Authentication.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/Authentication.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/CreateGroup.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/MainWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/Modular_results_preview.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/Student_Сard.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/Students_with_debts.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/add_student.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/for_next_course.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/view_and_print.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +23,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

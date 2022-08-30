@@ -9,12 +9,20 @@ import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Objects;
+import java.util.Optional;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
+import javafx.util.Pair;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
 import org.ioc.DataBase.DB_Registration_student;
 
 
@@ -167,11 +175,64 @@ public class ControllerRegistration_of_enrolled_students {
         });
 
         CreateGroup_Button.setOnAction(actionEvent -> {
-//            try {
-//                App.setRoot("gui/Creating_group");
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
+            Dialog<String> Dialog = new Dialog<>();
+            GridPane grid = new GridPane();
+            grid.setHgap(5);
+            grid.setVgap(5);
+
+            ObservableList<String> degree = FXCollections.observableArrayList("Бакалаврат", "Магістратура");
+
+            ChoiceBox<String> DegreeID = new ChoiceBox<>(degree);
+            DegreeID.setMinSize(150, 25);
+            ChoiceBox<String> Name_of_Group = new ChoiceBox<>();
+            Name_of_Group.setMinSize(150, 25);
+            ChoiceBox<String> NumberOfCourse = new ChoiceBox<>();
+            NumberOfCourse.setMinSize(150, 25);
+            ChoiceBox<String> NumberOfGroup = new ChoiceBox<>();
+            NumberOfGroup.setMinSize(150, 25);
+            ChoiceBox<String> YearOfGroup = new ChoiceBox<>();
+            YearOfGroup.setMinSize(150, 25);
+            CheckBox College_Type = new CheckBox("Техникум");
+            ButtonType Create = new ButtonType("Створити");
+
+            Label DegreeID_L = new Label("Вчена ступінь");
+            Label Name_of_Group_L = new Label("Назва освітньої програми");
+            Label NumberOfCourse_L = new Label("№ курса");
+            Label NumberOfGroup_L = new Label("№ групи");
+            Label YearOfGroup_L = new Label("Рік групи");
+
+            Dialog.getDialogPane().getButtonTypes().addAll(Create);
+
+            grid.add(DegreeID, 1, 0);
+            grid.add(DegreeID_L, 0, 0);
+
+            grid.add(Name_of_Group, 1, 1);
+            grid.add(Name_of_Group_L, 0, 1);
+
+            grid.add(NumberOfCourse, 1, 2);
+            grid.add(NumberOfCourse_L, 0, 2);
+
+            grid.add(NumberOfGroup, 1, 3);
+            grid.add(NumberOfGroup_L, 0, 3);
+
+            grid.add(YearOfGroup, 1, 4);
+            grid.add(YearOfGroup_L, 0, 4);
+
+            grid.add(College_Type, 2, 1);
+
+            Dialog.getDialogPane().setContent(grid);
+
+            Optional<String> result = Dialog.showAndWait();
+//            result.ifPresent(letter -> System.out.println("Your choice: " + letter));
+            result.
+
+
+            DegreeID.setOnAction(actionEvent1 ->{
+                System.out.println("hello");
+            });
+
+
+
         });
 
         AddNewStudent_Button.setOnAction(actionEvent -> {

@@ -5,6 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="446bcd77-3a16-4c57-b9a4-226251071ebf" name="Changes" comment="updateMainWindow">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_CreateGroupe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerCreating_group.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/Creating_group.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerRegistration_of_enrolled_students.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerRegistration_of_enrolled_students.java" afterDir="false" />
     </list>

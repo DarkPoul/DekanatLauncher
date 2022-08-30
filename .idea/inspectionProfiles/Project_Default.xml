@@ -2,7 +2,7 @@
   <profile version="1.0">
     <option name="myName" value="Project Default" />
     <inspection_tool class="AutoCloseableResource" enabled="true" level="WARNING" enabled_by_default="true">
-      <option name="METHOD_MATCHER_CONFIG" value="java.util.Formatter,format,java.io.Writer,append,com.google.common.base.Preconditions,checkNotNull,org.hibernate.Session,close,java.io.PrintWriter,printf,java.io.PrintStream,printf,org.ioc.DataBase.DB_Authentication,Connection_Dekanat,java.sql.Connection,prepareStatement,org.ioc.DataBase.DB_CreateGroup,SpecialityOfFaculty|ShortNameOfGroup,org.ioc.DataBase.DB_Directory,Directory_Info_Department|Directory_Info_Faculty|Directory_Info_Discipline|Directory_Info_Speciality|Directory_Info_Education,org.ioc.DataBase.DB_Registration_student,Spec_ID" />
+      <option name="METHOD_MATCHER_CONFIG" value="java.util.Formatter,format,java.io.Writer,append,com.google.common.base.Preconditions,checkNotNull,org.hibernate.Session,close,java.io.PrintWriter,printf,java.io.PrintStream,printf,org.ioc.DataBase.DB_Authentication,Connection_Dekanat,java.sql.Connection,prepareStatement,org.ioc.DataBase.DB_CreateGroup,SpecialityOfFaculty|ShortNameOfGroup,org.ioc.DataBase.DB_Directory,Directory_Info_Department|Directory_Info_Faculty|Directory_Info_Discipline|Directory_Info_Speciality|Directory_Info_Education,org.ioc.DataBase.DB_Registration_student,Spec_ID,org.ioc.DataBase.DB_CreateGroupe,FullNameAndIdOfGroup|SpecialityOfFaculty|ShortNameOfGroup" />
     </inspection_tool>
   </profile>
 </component>

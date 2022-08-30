@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #a1d1a3; -fx-font-size: 12.4; -fx-font-family: ArialBlack;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ioc.controller.ControllerCreating_group">
+   <children>
+      <Button fx:id="Create_button" layoutX="316.0" layoutY="159.0" mnemonicParsing="false" text="Створити" />
+      <CheckBox fx:id="College_Type" layoutX="230.0" layoutY="71.0" mnemonicParsing="false" text="Техникум" />
+      <VBox layoutX="10.0" layoutY="4.0" prefHeight="182.0" prefWidth="191.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Назва освітньої програми">
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin></Text>
+            <ChoiceBox fx:id="Name_of_Group" prefHeight="26.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin>
+            </ChoiceBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="№ курса">
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin></Text>
+            <ChoiceBox fx:id="NumberOfCourse" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin></ChoiceBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="№ групи">
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin></Text>
+            <ChoiceBox fx:id="NumberOfGroup" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin></ChoiceBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Рік групи">
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin></Text>
+            <ChoiceBox fx:id="YearOfGroup" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></ChoiceBox>
+         </children>
+      </VBox>
+      <VBox layoutX="229.0" layoutY="1.0" prefHeight="45.0" prefWidth="150.0">
+         <children>
+            <Label text="Вчена ступінь">
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin></Label>
+            <ChoiceBox fx:id="DegreeID" prefWidth="150.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

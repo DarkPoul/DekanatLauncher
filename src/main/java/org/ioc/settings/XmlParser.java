@@ -1,4 +1,4 @@
-package org.ioc.models;
+package org.ioc.settings;
 
 public class XmlParser {
     private String login, hashCod;

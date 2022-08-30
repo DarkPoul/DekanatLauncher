@@ -12,36 +12,29 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.ioc.App;
 import org.ioc.DataBase.DB_Authentication;
-import org.ioc.models.XmlParser;
 
-import org.ioc.settings.Hash;
-import org.ioc.settings.Settings;
+import org.ioc.Main;
+import org.ioc.settings.*;
 
 //import static org.ioc.settings.Settings.BatFile;
 
 
-
 public class ControllerApp {
-
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private VBox login_box;
@@ -72,8 +65,6 @@ public class ControllerApp {
         downloadFile(Settings.update, Settings.OutPutFolder);
         unpackZip(Settings.zipPath, Settings.zipFile);
 
-
-
         Thread thread = new XmlReader();
         thread.start();
 
@@ -93,95 +84,33 @@ public class ControllerApp {
         }
 
         login_button.setOnAction(actionEvent -> {
-            if (!Objects.equals(login_field.getText(), LoginName)){
-                try {
-                    FileHandler.NewLogin("<login_dekanat>"+LoginName+"</login_dekanat>", "<login_dekanat>"+login_field.getText()+"</login_dekanat>");
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+            Open_main();
+        });
+
+        update_button.setOnAction(actionEvent -> {
             try {
-                DB_Authentication.Open_DB();
-            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
-                e.printStackTrace();
+                FileHandler.NewLogin("<hesh>"+HashCodOld+"</hesh>", "<hesh>"+hash+"</hesh>");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
 
-            if (DB_Authentication.True_connection){
-                //////////////////////////////////////////////////////////////////////////
-                boolean Connection_dekanat = false;
-                DB_Authentication dataBaseHandler = new DB_Authentication();//Створюємо нову змінну на основі створеного нами класу
-                ResultSet Log_pass = dataBaseHandler.Connection_Dekanat();//Викликаємо функцію з іншого класу
-                List<String> var_1_List = new LinkedList<>();
-                List<String> var_2_List = new LinkedList<>();//Створюємо список
-                List<String> var_3_List = new LinkedList<>();//Створюємо список
-                while (true) {//Запускаємо цикл на обробку даних отриманих з бази даних
-                    try {
-                        if (!Log_pass.next()) break;
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                    String Login_string = null;
-                    String Password_string = null;
-                    String Login_ID = null;
-                    try {
-                        Login_string = Log_pass.getString("Login");
-                        Password_string = Log_pass.getString("password");
-                        Login_ID = Log_pass.getString("ID_Faculty");
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                    var_1_List.add(Login_string);//додаємо отримані результати у список
-                    var_2_List.add(Password_string);
-                    var_3_List.add(Login_ID);
-                }
-                for (int i = 0; i < var_1_List.size(); i++) {
-                    if(Objects.equals(login_field.getText(), var_1_List.get(i))){
-                        Connection_dekanat = Objects.equals(pass_field.getText(), var_2_List.get(i));
-                        Id_User = var_3_List.get(i);
-                    }
-                }
+            Thread up_dekanat = new UpdateDekanat();
+            up_dekanat.start();
+            try {
+                up_dekanat.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
-                if (Connection_dekanat) {
-                    System.out.println("to new class");
-                    try {
-                        App.setRoot("gui/MainWindow");
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-                else {
-                    System.out.println("Connection failed...");
-                }
-            } else System.out.println("Connection failed...");
-        });
-        update_button.setOnAction(actionEvent -> {
-            login_box.setVisible(true);
-            update_box.setVisible(false);
-        });
-        update_button.setOnAction(actionEvent -> {
-//            try {
-//                FileHandler.NewLogin("<hesh>"+HashCodOld+"</hesh>", "<hesh>"+hash+"</hesh>");
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//
-//            Thread up_dekanat = new UpdateDekanat();
-//            up_dekanat.start();
-//            try {
-//                up_dekanat.join();
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
-//
-//            if (!up_dekanat.isAlive()){
-//                unpackZip(Settings.zipPath, Settings.zipFile);
+            if (!up_dekanat.isAlive()){
+                unpackZip(Settings.zipPath, Settings.zipFile);
 //                try {
 //                    Runtime.getRuntime().exec("cmd /c " + BatFile);
 //                } catch (IOException e) {
 //                    throw new RuntimeException(e);
 //                }
-//                Close_window();
-//            }
+                Close_window();
+            }
 
 
         });
@@ -253,6 +182,81 @@ public class ControllerApp {
         close_window.close();
     }
 
+    public void Open(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            Open_main();
+        }
+    }
+
+    public void Open_main(){
+        if (!Objects.equals(login_field.getText(), LoginName)){
+            try {
+                FileHandler.NewLogin("<login_dekanat>"+LoginName+"</login_dekanat>", "<login_dekanat>"+login_field.getText()+"</login_dekanat>");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        try {
+            DB_Authentication.Open_DB();
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+
+        if (DB_Authentication.True_connection){
+            //////////////////////////////////////////////////////////////////////////
+            boolean Connection_dekanat = false;
+            DB_Authentication dataBaseHandler = new DB_Authentication();//Створюємо нову змінну на основі створеного нами класу
+            ResultSet Log_pass = dataBaseHandler.Connection_Dekanat();//Викликаємо функцію з іншого класу
+            List<String> var_1_List = new LinkedList<>();
+            List<String> var_2_List = new LinkedList<>();//Створюємо список
+            List<String> var_3_List = new LinkedList<>();//Створюємо список
+            while (true) {//Запускаємо цикл на обробку даних отриманих з бази даних
+                try {
+                    if (!Log_pass.next()) break;
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                String Login_string = null;
+                String Password_string = null;
+                String Login_ID = null;
+                try {
+                    Login_string = Log_pass.getString("Login");
+                    Password_string = Log_pass.getString("password");
+                    Login_ID = Log_pass.getString("ID_Faculty");
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                var_1_List.add(Login_string);//додаємо отримані результати у список
+                var_2_List.add(Password_string);
+                var_3_List.add(Login_ID);
+            }
+            for (int i = 0; i < var_1_List.size(); i++) {
+                if(Objects.equals(login_field.getText(), var_1_List.get(i))){
+                    Connection_dekanat = Objects.equals(pass_field.getText(), var_2_List.get(i));
+                    Id_User = var_3_List.get(i);
+                }
+            }
+
+            if (Connection_dekanat) {
+                System.out.println("to new class");
+                try {
+                    Stage stage = new Stage();
+                    stage.setTitle("");
+                    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("gui/MainWindow.fxml"));
+                    Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
+
+                    stage.setScene(scene);
+                    stage.show();
+                    Close_window();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            else {
+                System.out.println("Connection failed...");
+            }
+        } else System.out.println("Connection failed...");
+    }
 }
 
 

@@ -1,6 +1,6 @@
 package org.ioc.settings;
 
-import org.ioc.controller.UpdateDekanat;
+//import org.ioc.settings.UpdateDekanat;
 
 import java.net.MalformedURLException;
 import java.net.URL;

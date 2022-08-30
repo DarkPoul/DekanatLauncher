@@ -1,4 +1,4 @@
-package org.ioc.controller;
+package org.ioc.settings;
 import org.ioc.settings.Settings;
 
 import java.io.FileWriter;

@@ -1,13 +1,11 @@
-package org.ioc.controller;
+package org.ioc.settings;
 
-import org.ioc.models.XmlParser;
-import org.ioc.settings.Settings;
+import org.ioc.controller.ControllerApp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.concurrent.TimeUnit;
 
 public class XmlReader extends Thread{
     public void run(){

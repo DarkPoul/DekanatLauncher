@@ -4,16 +4,21 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.ioc.App;
+import org.ioc.Main;
+
+import static org.ioc.controller.ControllerApp.LoginName;
 
 
 public class ControllerMainWindow {
@@ -23,144 +28,54 @@ public class ControllerMainWindow {
     public Label exit;
     public ImageView icon;
 
-    @FXML
-    void handleCloseButtonAction(ActionEvent event) {
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
-    }
-
-
 
     @FXML
-    void initialize() {
-//        Dekanat_name.setText(Controller_authentication.Name_dekanat);
+    public Label name;
 
-//
+    @FXML
+    void initialize() {name.setText(LoginName);}
 
-//
-//        Making_changes_and_transferring_to_the_course.setOnAction(ActionEvent -> {
-//            try {
-//                App.setRoot("gui/Making_changes_and_transferring_to_the_course");
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
-//
-//        Registration_of_students.setOnAction(actionEvent -> {
-//            try {
-//                App.setRoot("gui/Registration_of_enrolled_students");
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//
-//
-//        });
-
+    public void Registration_of_enrolled_students() throws IOException {
+        Stage stage = new Stage();
+        stage.setTitle("");
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("gui/Registration_of_enrolled_students.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 400, 200);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    public void menu(ActionEvent actionEvent) {
-//        box.setVisible(!box.isVisible());
-//        exit.setVisible(!exit.isVisible());
-//        icon.setVisible(!icon.isVisible());
+    public void Support_of_the_educational_process() {
     }
 
-    public void suprovid(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/EduProcessCuration");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void Making_changes_and_transferring_to_a_course() {
     }
 
-    public void print(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/view_and_print");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void View_and_print_information() {
     }
 
-    public void modular(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/Modular_results_preview");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void Modular_control() {
     }
 
-    public void ask(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/Directory");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void Directory() throws IOException {
+        Stage stage = new Stage();
+        stage.setTitle("");
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("gui/Directory.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    public void info(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/about_developers");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void About_developers() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Про розробників");
+        alert.setHeaderText("Розробку вели 'Інформаційно-обчислювальний центр'");
+        alert.setContentText("По всім питанням звертатися - НТУ ІОЦ( 244 к.) \nПочта - ntu2445@gmail.com");
+        alert.showAndWait();
     }
 
-    public void CreateGroup(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/CreateGroup");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void Exit(ActionEvent event) {
+        ((Stage) name.getScene().getWindow()).close();
     }
-
-    public void AddNewStudent(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/add_student");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void MigrateStudentGroup(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/Diversification_of_students_by_groups");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void AddStudent(ActionEvent actionEvent) {
-//        Registration_of_enrolled_students.addStudent();
-    }
-
-    public void ViewCard(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/Student_Сard");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void AddMark(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/Entering_estimates_from_the_information");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void ViewBorg(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/Students_with_debts");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void MigrateCourse(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/for_next_course");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 }

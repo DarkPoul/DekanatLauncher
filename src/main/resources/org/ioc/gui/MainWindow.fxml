@@ -18,116 +18,95 @@
          <Font size="8.0" />
       </font></Label>
    <VBox alignment="CENTER" layoutX="71.0" layoutY="66.0" prefHeight="554.0" prefWidth="450.0">
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#Registration_of_enrolled_students" prefHeight="45.0"
-              prefWidth="450.0" text="Реєстрація зарахованих студентів" textAlignment="CENTER">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#Support_of_the_educational_process" prefHeight="45.0" prefWidth="450.0" text="Супровiд навчального процесу" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0">
-               <Image url="@../image/people.png"/>
+               <Image url="@../image/document.png" />
             </ImageView>
          </graphic>
          <font>
-            <Font size="16.0"/>
+            <Font size="16.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="5.0"/>
+            <Insets bottom="5.0" />
          </VBox.margin>
       </Button>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#Support_of_the_educational_process"
-              prefHeight="45.0" prefWidth="450.0" text="Супровiд навчального процесу" textAlignment="CENTER">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#Making_changes_and_transferring_to_a_course" prefHeight="45.0" prefWidth="450.0" text="Внесення змін та переведення на курс" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0">
-               <Image url="@../image/document.png"/>
+               <Image url="@../image/document_edit.png" />
             </ImageView>
          </graphic>
          <font>
-            <Font size="16.0"/>
+            <Font size="16.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="5.0"/>
+            <Insets bottom="5.0" />
          </VBox.margin>
       </Button>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#Making_changes_and_transferring_to_a_course"
-              prefHeight="45.0" prefWidth="450.0" text="Внесення змін та переведення на курс" textAlignment="CENTER">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#View_and_print_information" prefHeight="45.0" prefWidth="450.0" text="Перегляд та друк інформації" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0">
-               <Image url="@../image/document_edit.png"/>
+               <Image url="@../image/print.png" />
             </ImageView>
          </graphic>
          <font>
-            <Font size="16.0"/>
+            <Font size="16.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="5.0"/>
+            <Insets bottom="5.0" />
          </VBox.margin>
       </Button>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#View_and_print_information" prefHeight="45.0"
-              prefWidth="450.0" text="Перегляд та друк інформації" textAlignment="CENTER">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#Modular_control" prefHeight="45.0" prefWidth="450.0" text="Модульний контроль" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0">
-               <Image url="@../image/print.png"/>
+               <Image url="@../image/pencil.png" />
             </ImageView>
          </graphic>
          <font>
-            <Font size="16.0"/>
+            <Font size="16.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="5.0"/>
+            <Insets bottom="5.0" />
          </VBox.margin>
       </Button>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#Modular_control" prefHeight="45.0" prefWidth="450.0"
-              text="Модульний контроль" textAlignment="CENTER">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#Directory" prefHeight="45.0" prefWidth="450.0" text="Довідник" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0">
-               <Image url="@../image/pencil.png"/>
+               <Image url="@../image/ask.png" />
             </ImageView>
          </graphic>
          <font>
-            <Font size="16.0"/>
+            <Font size="16.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="5.0"/>
+            <Insets bottom="5.0" />
          </VBox.margin>
       </Button>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#Directory" prefHeight="45.0" prefWidth="450.0"
-              text="Довідник" textAlignment="CENTER">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#About_developers" prefHeight="45.0" prefWidth="450.0" text="Про розробників" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0">
-               <Image url="@../image/ask.png"/>
+               <Image url="@../image/info.png" />
             </ImageView>
          </graphic>
          <font>
-            <Font size="16.0"/>
+            <Font size="16.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="5.0"/>
+            <Insets bottom="5.0" />
          </VBox.margin>
       </Button>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#About_developers" prefHeight="45.0"
-              prefWidth="450.0" text="Про розробників" textAlignment="CENTER">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#Exit" prefHeight="45.0" prefWidth="450.0" text="Вихід" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0">
-               <Image url="@../image/info.png"/>
+               <Image url="@../image/exit.png" />
             </ImageView>
          </graphic>
          <font>
-            <Font size="16.0"/>
+            <Font size="16.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="5.0"/>
-         </VBox.margin>
-      </Button>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#Exit" prefHeight="45.0" prefWidth="450.0"
-              text="Вихід" textAlignment="CENTER">
-         <graphic>
-            <ImageView fitHeight="35.0" fitWidth="35.0">
-               <Image url="@../image/exit.png"/>
-            </ImageView>
-         </graphic>
-         <font>
-            <Font size="16.0"/>
-         </font>
-         <VBox.margin>
-            <Insets bottom="5.0"/>
+            <Insets bottom="5.0" />
          </VBox.margin>
       </Button>
    </VBox>

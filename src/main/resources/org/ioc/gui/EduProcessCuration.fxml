@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #a1d1a3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ioc.controller.ControllerEduProcessCuration">
+   <children>
+      <TabPane prefHeight="768.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Навчальний план">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox layoutX="14.0" layoutY="81.0" prefHeight="57.0" prefWidth="421.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black;">
+                                 <children>
+                                    <Label text="Група">
+                                       <HBox.margin>
+                                          <Insets right="30.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="performance_choose_group" prefHeight="25.0" prefWidth="102.0" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black;">
+                                 <children>
+                                    <Label text="Сесія">
+                                       <HBox.margin>
+                                          <Insets right="30.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ChoiceBox fx:id="choose_session" prefHeight="25.0" prefWidth="104.0" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <TableView fx:id="TableV_Search_D" layoutX="14.0" layoutY="159.0" prefHeight="310.0" prefWidth="300.0">
+                           <columns>
+                              <TableColumn fx:id="Table_C_Search_D" minWidth="15.0" prefWidth="227.0" text="C1" />
+                           </columns>
+                        </TableView>
+                        <TextField fx:id="Search_Box" layoutX="14.0" layoutY="152.0" prefHeight="25.0" prefWidth="300.0" />
+                        <Button fx:id="Button_Add_D" layoutX="192.0" layoutY="490.0" mnemonicParsing="false" text="Додати дисципліну" />
+                        <HBox layoutX="553.0" layoutY="490.0" prefHeight="51.0" prefWidth="457.0" spacing="20.0">
+                           <children>
+                              <HBox prefHeight="51.0" prefWidth="212.0" spacing="20.0" style="-fx-border-color: black;">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="51.0" prefWidth="225.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Вилучення" />
+                                          <HBox alignment="CENTER" prefHeight="35.0" prefWidth="418.0" spacing="10.0">
+                                             <children>
+                                                <Button fx:id="Button_Remove_For_Group" mnemonicParsing="false" text="Для групи" />
+                                                <Button fx:id="Del_expansion" mnemonicParsing="false" text="Розширине" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <VBox alignment="CENTER" prefHeight="51.0" prefWidth="225.0" style="-fx-border-color: black;">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Рознесення" />
+                                    <HBox alignment="CENTER" prefHeight="35.0" prefWidth="373.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="Button_Diversity_For_Group" mnemonicParsing="false" text="Для групи" />
+                                          <Button fx:id="diversity_expansion" mnemonicParsing="false" text="Розширине" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <TableView fx:id="TableView_Disc" editable="true" layoutX="355.0" layoutY="152.0" prefHeight="317.0" prefWidth="655.0">
+                           <columns>
+                              <TableColumn fx:id="NumberOfDiscipline" prefWidth="35.0" text="№" />
+                              <TableColumn fx:id="plan_table_discipline" prefWidth="184.0" text="Диципліна" />
+                              <TableColumn fx:id="plan_table_hours" prefWidth="50.0" text="Години" />
+                              <TableColumn fx:id="plan_table_exam" prefWidth="55.0" text="Екзамен" />
+                              <TableColumn fx:id="plan_table_Zalik" prefWidth="55.0" text="Залік" />
+                              <TableColumn fx:id="plan_table_Df_Zalik" minWidth="9.0" prefWidth="55.0" text="Д. Залік" />
+                              <TableColumn fx:id="plan_table_course_work" prefWidth="55.0" text="КР" />
+                              <TableColumn fx:id="plan_table_course_project" prefWidth="55.0" text="КП" />
+                              <TableColumn fx:id="plan_table_RGR" prefWidth="55.0" text="РГР" />
+                              <TableColumn fx:id="NumberOfKafedra" prefWidth="55.0" text="№ кф" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="Button_Remove_Discipline" layoutX="355.0" layoutY="490.0" mnemonicParsing="false" text="Видалити дисципліну з переліку" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Успішність">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="Student_Table" layoutX="14.0" layoutY="93.0" prefHeight="610.0" prefWidth="260.0">
+                          <columns>
+                            <TableColumn fx:id="Student_column" prefWidth="260.0" text="Призвище І. П." />
+                          </columns>
+                        </TableView>
+                        <TableView fx:id="Progress_Table" layoutX="299.0" layoutY="93.0" prefHeight="610.0" prefWidth="709.0">
+                          <columns>
+                            <TableColumn fx:id="pred_column" prefWidth="196.0" text="Предмети" />
+                            <TableColumn fx:id="semestr_column" prefWidth="84.0" text="Семестр" />
+                              <TableColumn fx:id="hour_column" prefWidth="71.0" text="К. годин" />
+                              <TableColumn fx:id="zal_column" prefWidth="70.0" text="Залік" />
+                              <TableColumn fx:id="ekz_column" prefWidth="67.0" text="Екзамен" />
+                              <TableColumn fx:id="KR_column" prefWidth="72.0" text="Курсова р." />
+                              <TableColumn fx:id="KP_column" prefWidth="77.0" text="Курсовий п." />
+                              <TableColumn fx:id="RGR_column" prefWidth="70.0" text="Роз. гр. р." />
+                          </columns>
+                        </TableView>
+                        <VBox alignment="CENTER" layoutX="64.0" layoutY="14.0" prefHeight="46.0" prefWidth="160.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Оберіть групу">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <ChoiceBox fx:id="GroupChoice" prefWidth="160.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

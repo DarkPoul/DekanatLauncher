@@ -22,8 +22,14 @@ public class ControllerMainWindow {
     @FXML
     void initialize() {name.setText(LoginName);}
 
-    public void Support_of_the_educational_process() {
-
+    public void Support_of_the_educational_process() throws IOException {
+        Stage stage = new Stage();
+        stage.setTitle("");
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("gui/EduProcessCuration.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void Making_changes_and_transferring_to_a_course() {

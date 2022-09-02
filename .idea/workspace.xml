@@ -5,20 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="446bcd77-3a16-4c57-b9a4-226251071ebf" name="Changes" comment="updateMainWindow">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerEduProcessCuration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/models/Table_Edu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/models/Table_Search_D.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/EduProcessCuration.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_EduProcess.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/models/Table_Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_AddStudent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_CreateGroup.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_CreateGroupe.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_Registration_student.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerCreating_group.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerEduProcessCuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerEduProcessCuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerMainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerMainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerRegistration_of_enrolled_students.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/MainWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/Registration_of_enrolled_students.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/EduProcessCuration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/EduProcessCuration.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

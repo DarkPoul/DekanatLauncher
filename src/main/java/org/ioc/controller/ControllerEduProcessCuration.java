@@ -17,15 +17,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.ioc.App;
+import org.ioc.DataBase.DB_EduProcess;
 import org.ioc.models.Table_Edu;
 import org.ioc.models.Table_Search_D;
+import org.ioc.models.Table_Student;
 
 public class ControllerEduProcessCuration {
 
     @FXML
-    private TableView<?> Student_Table;
+    private TableView<Table_Student> Student_Table;
     @FXML
-    private TableColumn<?, ?> Student_column;
+    private TableColumn<String, Table_Student> Student_column;
     @FXML
     private TableView<?> Progress_Table;
     @FXML
@@ -45,7 +47,7 @@ public class ControllerEduProcessCuration {
     @FXML
     private TableColumn<?, ?> RGR_column;
     @FXML
-    private ChoiceBox<?> GroupChoice;
+    private ChoiceBox<String> GroupChoice;
     @FXML
     private Button Button_Add_D;
     @FXML
@@ -127,7 +129,6 @@ public class ControllerEduProcessCuration {
     void initialize() throws SQLException {
 
 
-
         Discipline_for_Edu.clear();
 
         plan_table_discipline.setCellValueFactory(new PropertyValueFactory<>("NameOfDiscipline"));
@@ -140,14 +141,17 @@ public class ControllerEduProcessCuration {
         plan_table_Df_Zalik.setCellValueFactory(new PropertyValueFactory<>("D_Zalik"));
         NumberOfKafedra.setCellValueFactory(new PropertyValueFactory<>("KF"));
         NumberOfDiscipline.setCellValueFactory(new PropertyValueFactory<>("NumberOfDiscipline"));
+        Student_column.setCellValueFactory(new PropertyValueFactory<>("Name"));
+
+
 
         ObservableList<Table_Edu> Disc = FXCollections.observableArrayList();
 //Завантаження номеру сесії
-        ObservableList<String> Var_Of_Sessions= FXCollections.observableArrayList("Зимова", "Літня");
+        ObservableList<String> Var_Of_Sessions = FXCollections.observableArrayList("Зимова", "Літня");
         choose_session.setItems(Var_Of_Sessions);
         choose_session.setValue("Зимова");
 //Завантаження номеру групи
-        DataBase DB = new DataBase();
+        DB_EduProcess DB = new DB_EduProcess();
         ResultSet Group_Identification = DB.GroupName_SQL();
 
         List<String> GroupIdentification_List = new LinkedList<>();
@@ -169,18 +173,25 @@ public class ControllerEduProcessCuration {
                 str3 = Group_Identification.getString("NumberOfGroup");
                 str4 = Group_Identification.getString("YearOfGroup");
                 str5 = Group_Identification.getString("GroupId");
+                System.out.println(str1);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
             GroupIdentification_List.add(str1 + "-" + str2 + "-" + str3 + "-" + str4);
             Group_ID_List.add(str5);
         }
+        for (String s : GroupIdentification_List){
+            System.out.println(s);
+            System.out.println("Hello");
+        }
 
         performance_choose_group.setItems(FXCollections.observableArrayList(GroupIdentification_List));
+        GroupChoice.setItems(FXCollections.observableArrayList(GroupIdentification_List));
+
         performance_choose_group.setVisibleRowCount(10);
 
 //Завантаження дисциплін
-        ResultSet Name_Of_Disc = DB.Disc();
+        ResultSet Name_Of_Disc = DB_EduProcess.Disc();
         ObservableList<Table_Search_D> NameOdDiscOL = FXCollections.observableArrayList();
         while (true) {
             try {
@@ -201,7 +212,7 @@ public class ControllerEduProcessCuration {
 
 //Фільтр дисциплін
         FilteredList<Table_Search_D> Filter = new FilteredList<>(NameOdDiscOL, b -> true);
-        Search_Box.textProperty().addListener((observable, oldValue, newValue )-> Filter.setPredicate(Model_Table_Search_D -> {
+        Search_Box.textProperty().addListener((observable, oldValue, newValue) -> Filter.setPredicate(Model_Table_Search_D -> {
             if (newValue == null || newValue.isEmpty()) {
                 return true;
             }
@@ -215,20 +226,16 @@ public class ControllerEduProcessCuration {
 // Налаштування моделі даних
 
 
-
         TableView_Disc.setEditable(true);
         plan_table_discipline.setEditable(true);
 
 
-
-        for (Table_Edu s: TableView_Disc.getItems()){
+        for (Table_Edu s : TableView_Disc.getItems()) {
             s.getExam().setOnAction(actionEvent2 -> {
                 s.getZalik().setVisible(false);
                 TableView_Disc.refresh();
             });
         }
-
-
 
 
 //Кнопки
@@ -239,24 +246,24 @@ public class ControllerEduProcessCuration {
             TableView_Disc.setItems(null);
             TableView_Disc.getSelectionModel().clearSelection();
 
-            if (!Objects.equals(performance_choose_group.getValue(), "")){
-                for (int i = 0; i < GroupIdentification_List.size(); i++){
-                    if (Objects.equals(performance_choose_group.getValue(), GroupIdentification_List.get(i))){
+            if (!Objects.equals(performance_choose_group.getValue(), "")) {
+                for (int i = 0; i < GroupIdentification_List.size(); i++) {
+                    if (Objects.equals(performance_choose_group.getValue(), GroupIdentification_List.get(i))) {
                         GroupID = Group_ID_List.get(i);
-                        if (Objects.equals(choose_session.getValue(), "Зимова")){
+                        if (Objects.equals(choose_session.getValue(), "Зимова")) {
                             NumberOfSession = String.valueOf(Integer.parseInt(performance_choose_group.getValue().split("-")[1]) * 2 - 1);//NumberOfSemester
                         } else if (Objects.equals(choose_session.getValue(), "Літня")) {
                             NumberOfSession = String.valueOf(Integer.parseInt(performance_choose_group.getValue().split("-")[1]) * 2); //NumberOfSemester
                         }
-                        if (!Objects.equals(performance_choose_group.getValue(), "")){
+                        if (!Objects.equals(performance_choose_group.getValue(), "")) {
                             int temp = 0;
-                            for (String ignored : GroupIdentification_List){
-                                if (Objects.equals(GroupIdentification_List.get(temp), performance_choose_group.getValue())){
+                            for (String ignored : GroupIdentification_List) {
+                                if (Objects.equals(GroupIdentification_List.get(temp), performance_choose_group.getValue())) {
                                     GroupID = Group_ID_List.get(temp);
                                     break;
-                                }else temp ++;
+                                } else temp++;
                             }
-                            ResultSet PIB_Students_RS= DB.StudentsPIB();
+                            ResultSet PIB_Students_RS = DB.StudentsPIB();
                             String P_Student_Short;
                             String I_Student_Short;
                             String B_Student_Short;
@@ -280,7 +287,7 @@ public class ControllerEduProcessCuration {
                             }
                             ObservableList<Table_Edu> Discipline = FXCollections.observableArrayList();
 
-                            if (Objects.equals(choose_session.getValue(), "Зимова")){
+                            if (Objects.equals(choose_session.getValue(), "Зимова")) {
                                 NumberOfSession = String.valueOf(Integer.parseInt(performance_choose_group.getValue().split("-")[1]) * 2 - 1); //NumberOfSemester
                             } else if (Objects.equals(choose_session.getValue(), "Літня")) {
                                 NumberOfSession = String.valueOf(Integer.parseInt(performance_choose_group.getValue().split("-")[1]) * 2); //NumberOfSemester
@@ -288,10 +295,9 @@ public class ControllerEduProcessCuration {
 
                             try {
                                 StudentFO = PIB_Student_Full.get(0).split("-")[1];
-                            } catch (IndexOutOfBoundsException e){
+                            } catch (IndexOutOfBoundsException e) {
                                 e.printStackTrace();
                             }
-
 
 
                             ResultSet StudentEdu_RS = DB.StudentsEdu();
@@ -300,21 +306,17 @@ public class ControllerEduProcessCuration {
 
                             while (true) {//Запускаємо цикл на обробку даних отриманих з бази даних
                                 try {
-                                    if (!StudentEdu_RS.next()){
+                                    if (!StudentEdu_RS.next()) {
                                         break;
                                     }
                                 } catch (SQLException throwables) {
                                     throwables.printStackTrace();
                                 }
                                 try {
-                                    Discipline.add(new Table_Edu (StudentEdu_RS.getString("NameOfDiscipline_ukr")));
+                                    Discipline.add(new Table_Edu(StudentEdu_RS.getString("NameOfDiscipline_ukr")));
                                 } catch (SQLException throwables) {
                                     throwables.printStackTrace();
                                 }
-
-
-
-
 
 
                                 TableView_Disc.setItems(Discipline);
@@ -322,26 +324,25 @@ public class ControllerEduProcessCuration {
                                 Disc.add(nx, Discipline.get(nx));
 
 
-                                try{
+                                try {
                                     Disc.get(nx).KF.setText(StudentEdu_RS.getString("NumberOfDepartment"));
                                     Disc.get(nx).HH.setText(StudentEdu_RS.getString("Hours"));
 
-                                    if (Objects.equals(StudentEdu_RS.getString("Test"), "0")){
+                                    if (Objects.equals(StudentEdu_RS.getString("Test"), "0")) {
                                         Disc.get(nx).getZalik().setSelected(true);
                                         Disc.get(nx).getExam().setVisible(false);
                                         Disc.get(nx).getD_Zalik().setVisible(false);
                                     }
-                                    if (Objects.equals(StudentEdu_RS.getString("Exam"), "0")){
+                                    if (Objects.equals(StudentEdu_RS.getString("Exam"), "0")) {
                                         Disc.get(nx).getExam().setSelected(true);
                                         Disc.get(nx).getZalik().setVisible(false);
                                         Disc.get(nx).getD_Zalik().setVisible(false);
                                     }
 
 
-
                                     if (Objects.equals(StudentEdu_RS.getString("CalculationGraphicWork"), "0")) {
                                         Disc.get(nx).RGR.setValue(StudentEdu_RS.getString("CalculationGraphicWork"));
-                                        if (Objects.equals(StudentEdu_RS.getString("CalculationGraphicWork_4"), "0")){
+                                        if (Objects.equals(StudentEdu_RS.getString("CalculationGraphicWork_4"), "0")) {
                                             Disc.get(nx).RGR.setValue("4");
                                             Disc.get(nx).KR.setVisible(false);
                                             Disc.get(nx).KP.setVisible(false);
@@ -353,28 +354,28 @@ public class ControllerEduProcessCuration {
                                         }
                                     } else Disc.get(nx).RGR.setValue("-");
 
-                                    if (Objects.equals(StudentEdu_RS.getString("Coursework"), "0")){
+                                    if (Objects.equals(StudentEdu_RS.getString("Coursework"), "0")) {
                                         Disc.get(nx).KR.setSelected(true);
                                         Disc.get(nx).KP.setVisible(false);
                                         Disc.get(nx).RGR.setVisible(false);
                                     }
-                                    if (Objects.equals(StudentEdu_RS.getString("CourseProject"), "0")){
+                                    if (Objects.equals(StudentEdu_RS.getString("CourseProject"), "0")) {
                                         Disc.get(nx).KP.setSelected(true);
                                         Disc.get(nx).KR.setVisible(false);
                                         Disc.get(nx).RGR.setVisible(false);
                                     }
-                                    if (Objects.equals(StudentEdu_RS.getString("DifferentiatedTest"), "0")){
+                                    if (Objects.equals(StudentEdu_RS.getString("DifferentiatedTest"), "0")) {
                                         Disc.get(nx).D_Zalik.setSelected(true);
                                         Disc.get(nx).Exam.setVisible(false);
                                         Disc.get(nx).Zalik.setVisible(false);
                                     }
-                                    Disc.get(Disc.size()-1).setNumberOfDiscipline(String.valueOf(nx+1));
+                                    Disc.get(Disc.size() - 1).setNumberOfDiscipline(String.valueOf(nx + 1));
 
 
                                     nx++;
 
 
-                                } catch (SQLException e){
+                                } catch (SQLException e) {
                                     e.printStackTrace();
                                 }
 
@@ -393,12 +394,12 @@ public class ControllerEduProcessCuration {
             TableView_Disc.setItems(null);
             TableView_Disc.getSelectionModel().clearSelection();
 
-            if (!(performance_choose_group.getValue() == null)){
-                for (int i = 0; i < GroupIdentification_List.size(); i++){
-                    if (Objects.equals(performance_choose_group.getValue(), GroupIdentification_List.get(i))){
+            if (!(performance_choose_group.getValue() == null)) {
+                for (int i = 0; i < GroupIdentification_List.size(); i++) {
+                    if (Objects.equals(performance_choose_group.getValue(), GroupIdentification_List.get(i))) {
                         GroupID = Group_ID_List.get(i);
                         //NumberOfSession = choose_session.getValue();
-                        if (Objects.equals(choose_session.getValue(), "Зимова")){
+                        if (Objects.equals(choose_session.getValue(), "Зимова")) {
                             NumberOfSession = String.valueOf(Integer.parseInt(performance_choose_group.getValue().split("-")[1]) * 2 - 1);//NumberOfSemester
                         } else if (Objects.equals(choose_session.getValue(), "Літня")) {
                             NumberOfSession = String.valueOf(Integer.parseInt(performance_choose_group.getValue().split("-")[1]) * 2); //NumberOfSemester
@@ -408,24 +409,24 @@ public class ControllerEduProcessCuration {
 
                         TableView_Disc.setItems(null);
 
-                        if (!Objects.equals(performance_choose_group.getValue(), "")){
-                            for (int n = 0; n < GroupIdentification_List.size(); n++){
-                                if (Objects.equals(performance_choose_group.getValue(), GroupIdentification_List.get(n))){
+                        if (!Objects.equals(performance_choose_group.getValue(), "")) {
+                            for (int n = 0; n < GroupIdentification_List.size(); n++) {
+                                if (Objects.equals(performance_choose_group.getValue(), GroupIdentification_List.get(n))) {
                                     GroupID = Group_ID_List.get(n);
-                                    if (Objects.equals(choose_session.getValue(), "Зимова")){
+                                    if (Objects.equals(choose_session.getValue(), "Зимова")) {
                                         NumberOfSession = String.valueOf(Integer.parseInt(performance_choose_group.getValue().split("-")[1]) * 2 - 1);//NumberOfSemester
                                     } else if (Objects.equals(choose_session.getValue(), "Літня")) {
                                         NumberOfSession = String.valueOf(Integer.parseInt(performance_choose_group.getValue().split("-")[1]) * 2); //NumberOfSemester
                                     }
-                                    if (!Objects.equals(performance_choose_group.getValue(), "")){
+                                    if (!Objects.equals(performance_choose_group.getValue(), "")) {
                                         int temp = 0;
-                                        for (String ignored : GroupIdentification_List){
-                                            if (Objects.equals(GroupIdentification_List.get(temp), performance_choose_group.getValue())){
+                                        for (String ignored : GroupIdentification_List) {
+                                            if (Objects.equals(GroupIdentification_List.get(temp), performance_choose_group.getValue())) {
                                                 GroupID = Group_ID_List.get(temp);
                                                 break;
-                                            }else temp ++;
+                                            } else temp++;
                                         }
-                                        ResultSet PIB_Students_RS= DB.StudentsPIB();
+                                        ResultSet PIB_Students_RS = DB.StudentsPIB();
                                         String P_Student_Short;
                                         String I_Student_Short;
                                         String B_Student_Short;
@@ -449,7 +450,7 @@ public class ControllerEduProcessCuration {
                                         }
                                         ObservableList<Table_Edu> Discipline = FXCollections.observableArrayList();
 
-                                        if (Objects.equals(choose_session.getValue(), "Зимова")){
+                                        if (Objects.equals(choose_session.getValue(), "Зимова")) {
                                             NumberOfSession = String.valueOf(Integer.parseInt(performance_choose_group.getValue().split("-")[1]) * 2 - 1); //NumberOfSemester
                                         } else if (Objects.equals(choose_session.getValue(), "Літня")) {
                                             NumberOfSession = String.valueOf(Integer.parseInt(performance_choose_group.getValue().split("-")[1]) * 2); //NumberOfSemester
@@ -457,10 +458,9 @@ public class ControllerEduProcessCuration {
 
                                         try {
                                             StudentFO = PIB_Student_Full.get(0).split("-")[1];
-                                        } catch (IndexOutOfBoundsException e){
+                                        } catch (IndexOutOfBoundsException e) {
                                             e.printStackTrace();
                                         }
-
 
 
                                         ResultSet StudentEdu_RS = DB.StudentsEdu();
@@ -469,43 +469,39 @@ public class ControllerEduProcessCuration {
 
                                         while (true) {//Запускаємо цикл на обробку даних отриманих з бази даних
                                             try {
-                                                if (!StudentEdu_RS.next()){
+                                                if (!StudentEdu_RS.next()) {
                                                     break;
                                                 }
                                             } catch (SQLException throwables) {
                                                 throwables.printStackTrace();
                                             }
                                             try {
-                                                Discipline.add(new Table_Edu (StudentEdu_RS.getString("NameOfDiscipline_ukr")));
+                                                Discipline.add(new Table_Edu(StudentEdu_RS.getString("NameOfDiscipline_ukr")));
                                             } catch (SQLException throwables) {
                                                 throwables.printStackTrace();
                                             }
 
 
-
-
-
-
                                             TableView_Disc.setItems(Discipline);
 
                                             Disc.add(nx, Discipline.get(nx));
-                                            try{
+                                            try {
                                                 Disc.get(nx).KF.setText(StudentEdu_RS.getString("NumberOfDepartment"));
                                                 Disc.get(nx).HH.setText(StudentEdu_RS.getString("Hours"));
 
-                                                if (!Objects.equals(StudentEdu_RS.getString("Test"), "false")){
+                                                if (!Objects.equals(StudentEdu_RS.getString("Test"), "false")) {
                                                     Disc.get(nx).getZalik().setSelected(true);
                                                     Disc.get(nx).getExam().setVisible(false);
                                                     Disc.get(nx).getD_Zalik().setVisible(false);
                                                 }
-                                                if (!Objects.equals(StudentEdu_RS.getString("Exam"), "false")){
+                                                if (!Objects.equals(StudentEdu_RS.getString("Exam"), "false")) {
                                                     Disc.get(nx).getExam().setSelected(true);
                                                     Disc.get(nx).getZalik().setVisible(false);
                                                     Disc.get(nx).getD_Zalik().setVisible(false);
                                                 }
                                                 if (!Objects.equals(StudentEdu_RS.getString("CalculationGraphicWork"), "false")) {
                                                     Disc.get(nx).RGR.setValue(StudentEdu_RS.getString("CalculationGraphicWork"));
-                                                    if (!Objects.equals(StudentEdu_RS.getString("CalculationGraphicWork_4"), "false")){
+                                                    if (!Objects.equals(StudentEdu_RS.getString("CalculationGraphicWork_4"), "false")) {
                                                         Disc.get(nx).RGR.setValue("4");
                                                         Disc.get(nx).KR.setVisible(false);
                                                         Disc.get(nx).KP.setVisible(false);
@@ -516,24 +512,24 @@ public class ControllerEduProcessCuration {
                                                         Disc.get(nx).KP.setVisible(false);
                                                     }
                                                 } else Disc.get(nx).RGR.setValue("-");
-                                                if (!Objects.equals(StudentEdu_RS.getString("Coursework"), "false")){
+                                                if (!Objects.equals(StudentEdu_RS.getString("Coursework"), "false")) {
                                                     Disc.get(nx).KR.setSelected(true);
                                                     Disc.get(nx).KP.setVisible(false);
                                                     Disc.get(nx).RGR.setVisible(false);
                                                 }
-                                                if (!Objects.equals(StudentEdu_RS.getString("CourseProject"), "false")){
+                                                if (!Objects.equals(StudentEdu_RS.getString("CourseProject"), "false")) {
                                                     Disc.get(nx).KP.setSelected(true);
                                                     Disc.get(nx).KR.setVisible(false);
                                                     Disc.get(nx).RGR.setVisible(false);
                                                 }
-                                                if (!Objects.equals(StudentEdu_RS.getString("DifferentiatedTest"), "false")){
+                                                if (!Objects.equals(StudentEdu_RS.getString("DifferentiatedTest"), "false")) {
                                                     Disc.get(nx).getD_Zalik().setSelected(true);
                                                     Disc.get(nx).getExam().setVisible(false);
                                                     Disc.get(nx).getZalik().setVisible(false);
                                                 }
-                                                Disc.get(Disc.size()-1).setNumberOfDiscipline(String.valueOf(nx+1));
+                                                Disc.get(Disc.size() - 1).setNumberOfDiscipline(String.valueOf(nx + 1));
                                                 nx++;
-                                            } catch (SQLException e){
+                                            } catch (SQLException e) {
                                                 e.printStackTrace();
                                             }
 
@@ -552,10 +548,9 @@ public class ControllerEduProcessCuration {
         });
 
 
-        Button_Diversity_For_Group.setOnAction(ActionEvent ->  {
+        Button_Diversity_For_Group.setOnAction(ActionEvent -> {
 
-            if (!(Disc.size() == 0) && !Objects.equals(performance_choose_group.getValue(), null)){
-                progress_bar.setVisible(true);
+            if (!(Disc.size() == 0) && !Objects.equals(performance_choose_group.getValue(), null)) {
 //Створення вікна підтвердження
 //
 //                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("warning.fxml"));
@@ -566,7 +561,7 @@ public class ControllerEduProcessCuration {
 
 //Всі студенти які є в групі
                 ResultSet IdOfEduProgram = DB.EduProgramAndSpec();
-                while (true){
+                while (true) {
                     try {
                         if (!IdOfEduProgram.next()) break;
                     } catch (SQLException throwables) {
@@ -580,7 +575,7 @@ public class ControllerEduProcessCuration {
                 }
 
                 ResultSet IdOfSpec = DB.Spec_ID_For_Edu();
-                while (true){
+                while (true) {
                     try {
                         if (!IdOfSpec.next()) break;
                     } catch (SQLException throwables) {
@@ -594,7 +589,7 @@ public class ControllerEduProcessCuration {
                 }
 
                 ResultSet FacultyId = DB.FacultyID();
-                while (true){
+                while (true) {
                     try {
                         if (!FacultyId.next()) break;
                     } catch (SQLException throwables) {
@@ -606,7 +601,6 @@ public class ControllerEduProcessCuration {
                         e.printStackTrace();
                     }
                 }
-
 
 
                 ResultSet students = DB.StudentsInGroup();
@@ -622,7 +616,6 @@ public class ControllerEduProcessCuration {
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
-
 
 
                     StudentFO = str1;
@@ -644,22 +637,22 @@ public class ControllerEduProcessCuration {
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
                         }
-                        DiscIdForSql.add(0 ,str11);
+                        DiscIdForSql.add(0, str11);
                         DisciplineIdSql = DiscIdForSql.get(0);
 
                         Hours = Edu.getHH().getText();
                         Kafedra = Edu.getKF().getText();
-                        if (String.valueOf(Edu.getZalik().isSelected()).equals("true")){
+                        if (String.valueOf(Edu.getZalik().isSelected()).equals("true")) {
                             Test = "0";
                         } else Test = "false";
 
-                        if (String.valueOf(Edu.getExam().isSelected()).equals("true")){
+                        if (String.valueOf(Edu.getExam().isSelected()).equals("true")) {
                             Exam = "0";
                         } else Exam = "false";
 
                         CGW = String.valueOf(Edu.getRGR().getValue());
-                        if (!Objects.equals(String.valueOf(Edu.getRGR().getValue()), "-")){
-                            if (Objects.equals(String.valueOf(Edu.getRGR().getValue()), "4")){
+                        if (!Objects.equals(String.valueOf(Edu.getRGR().getValue()), "-")) {
+                            if (Objects.equals(String.valueOf(Edu.getRGR().getValue()), "4")) {
                                 CGW = "0";
                                 CGW_1 = "0";
                                 CGW_2 = "0";
@@ -680,24 +673,24 @@ public class ControllerEduProcessCuration {
                             CGW = "false";
                         }
 
-                        if (String.valueOf(Edu.getKR().isSelected()).equals("true")){
+                        if (String.valueOf(Edu.getKR().isSelected()).equals("true")) {
                             CW = "0";
                         } else CW = "false";
 
 
-                        if (String.valueOf(Edu.getKP().isSelected()).equals("true")){
+                        if (String.valueOf(Edu.getKP().isSelected()).equals("true")) {
                             CP = "0";
                         } else CP = "false";
 
 
-                        if (String.valueOf(Edu.getD_Zalik().isSelected()).equals("true")){
+                        if (String.valueOf(Edu.getD_Zalik().isSelected()).equals("true")) {
                             Dif_Test = "0";
                         } else Dif_Test = "false";
 
                         Uni_cod = IdFaculty + "-" + IdEduProgram + "-" + NumberOfSession + "-" + DisciplineIdSql + "-" + StudentFO; //Для забезпечення бездубляжного додавання
 
-                        if (!Objects.equals(String.valueOf(Edu.getRGR().getValue()), "-")){
-                            if (Objects.equals(String.valueOf(Edu.getRGR().getValue()), "4")){
+                        if (!Objects.equals(String.valueOf(Edu.getRGR().getValue()), "-")) {
+                            if (Objects.equals(String.valueOf(Edu.getRGR().getValue()), "4")) {
                                 DB.Study_plan_Insert_four_RGR();
                             } else if (Objects.equals(String.valueOf(Edu.getRGR().getValue()), "6")) {
                                 try {
@@ -712,7 +705,6 @@ public class ControllerEduProcessCuration {
                     }
                 }
             }
-            progress_bar.setVisible(false);
         });
 
 //Додавання дисципліни в модель
@@ -720,7 +712,7 @@ public class ControllerEduProcessCuration {
         Button_Add_D.setOnAction(actionEvent -> {
 
             Disc.add(new Table_Edu(Table_C_Search_D.getCellData(TableV_Search_D.getSelectionModel().getFocusedIndex()).replace("'", "`")));
-            Disc.get(Disc.size()-1).setNumberOfDiscipline(String.valueOf(Disc.size()));
+            Disc.get(Disc.size() - 1).setNumberOfDiscipline(String.valueOf(Disc.size()));
             TableView_Disc.setItems(Disc);
 
         });
@@ -728,144 +720,61 @@ public class ControllerEduProcessCuration {
         Button_Remove_Discipline.setOnAction(actionEvent -> Disc.remove(TableView_Disc.getSelectionModel().getFocusedIndex()));
 
         Button_Remove_For_Group.setOnAction(actionEvent -> {
+            List<String> DiscIdForSql = new LinkedList<>();
+            for (Table_Edu Edu : Disc) {
+                NameOfDisc_SQL = Edu.getNameOfDiscipline();
 
+                ResultSet IdOfDisc = DB.DiscID();
+                try {
+                    if (!IdOfDisc.next()) break;
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                String str11 = null;
+                try {
+                    str11 = IdOfDisc.getString("DisciplineId");
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                DiscIdForSql.add(0, str11);
+                DisciplineIdSql = DiscIdForSql.get(0);
+            }
+            System.out.println(StudentFO);
+            System.out.println(NumberOfSession);
+            System.out.println(DisciplineIdSql);
+            DB.InsertIntoTable();
+            DB.DeleteIntoTable();
         });
 
-        diversity_expansion.setOnAction(ActionEvent ->{
-            if (Disc.size() != 0){
-                for (Table_Edu s : TableView_Disc.getItems()){
-                    Discipline_for_Edu.add(Discipline_for_Edu.size(), s.getNameOfDiscipline());
-                }
+
+        GroupChoice.setOnAction(actionEvent -> {
+            ResultSet PIB_Students_RS = DB.StudentsPIB();
+            String P_Student_Short;
+            String I_Student_Short;
+            String B_Student_Short;
+            String ID_Student_Short;
+            List<Table_Student> PIB_Student_Full = new LinkedList<>();
+            while (true) {
                 try {
-                    App.setRoot("gui/EduProcess_Advanced_Add");
-                } catch (IOException e) {
+                    if (!PIB_Students_RS.next()) break;
+                } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-            }
-        });
-
-        Del_expansion.setOnAction(actionEvent -> {
-            if (Disc.size() != 0){
-                for (Table_Edu s : TableView_Disc.getItems()){
-                    Discipline_for_Edu.add(Discipline_for_Edu.size(), s.getNameOfDiscipline());
-                }
                 try {
-                    App.setRoot("gui/EduProcess_Advanced_Del");
-                } catch (IOException e) {
+                    P_Student_Short = PIB_Students_RS.getString("LastName_ukr");
+                    I_Student_Short = PIB_Students_RS.getString("FirstName_ukr").substring(0, 1);
+                    B_Student_Short = PIB_Students_RS.getString("Surname_ukr").substring(0, 1);
+                    ID_Student_Short = PIB_Students_RS.getString("IdFO");
+                } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
+                PIB_Student_Full.add(new Table_Student(P_Student_Short + " " + I_Student_Short + "." + B_Student_Short + "." + "-" + ID_Student_Short));
             }
+            Student_Table.setItems(FXCollections.observableArrayList(PIB_Student_Full));
+
+
+
         });
-    }
-
-    public void menu(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/MainWindow");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void suprovid(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/ControllerEduProcessCuration");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void print(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/view_and_print");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void modular(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/Modular_results_preview");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void ask(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/Directory");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void info(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/about_developers");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void CreateGroup(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/Creating_group");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void AddNewStudent(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/add_student");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void MigrateStudentGroup(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/Diversification_of_students_by_groups.fxml");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void AddStudent(ActionEvent actionEvent) {
-        //
-        //
-        //
-    }
-
-    public void ViewCard(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/Student_Сard");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void AddMark(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/Entering_estimates_from_the_information");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void ViewBorg(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/Students_with_debts");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void MigrateCourse(ActionEvent actionEvent) {
-        try {
-            App.setRoot("gui/for_next_course");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
 

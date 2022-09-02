@@ -62,7 +62,7 @@
                         </HBox>
                         <TableView fx:id="TableV_Search_D" layoutX="14.0" layoutY="159.0" prefHeight="310.0" prefWidth="300.0">
                            <columns>
-                              <TableColumn fx:id="Table_C_Search_D" minWidth="15.0" prefWidth="227.0" text="C1" />
+                              <TableColumn fx:id="Table_C_Search_D" minWidth="15.0" prefWidth="298.0" text="C1" />
                            </columns>
                         </TableView>
                         <TextField fx:id="Search_Box" layoutX="14.0" layoutY="152.0" prefHeight="25.0" prefWidth="300.0" />

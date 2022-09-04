@@ -72,6 +72,8 @@ public class ControllerApp {
         login_field.setText(String.valueOf(LoginName));
 
 
+
+
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(Settings.HashFile))) {
            hash = reader.readLine();
         } catch (IOException e) {

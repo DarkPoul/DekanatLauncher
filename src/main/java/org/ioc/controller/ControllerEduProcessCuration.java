@@ -9,10 +9,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.ioc.DataBase.DB_EduProcess;
+import org.ioc.Main;
 import org.ioc.models.Table_Edu;
 import org.ioc.models.Table_Search_D;
 import org.ioc.models.Table_Student;
@@ -82,6 +88,9 @@ public class ControllerEduProcessCuration {
     private Button diversity_expansion;
 
     @FXML
+    private Button AddToBase;
+
+    @FXML
     private TableColumn<?, ?> ekz_column;
 
     @FXML
@@ -115,7 +124,7 @@ public class ControllerEduProcessCuration {
     private TableColumn<?, ?> plan_table_hours;
 
     @FXML
-    private TableColumn<?, ?> pred_column;
+    private TableColumn<Table_disc_mark, String> pred_column;
 
     @FXML
     private TableColumn<?, ?> semestr_column;
@@ -180,6 +189,9 @@ public class ControllerEduProcessCuration {
             name_Group_OL.add(s.split(";")[0]);
         }
         performance_choose_group.setItems(name_Group_OL);
+
+
+
 
 
 
@@ -361,6 +373,27 @@ public class ControllerEduProcessCuration {
 
         });
 
+        Button_Remove_Discipline.setOnAction(actionEvent -> {
+            ObservableList<Table_Edu> Disc = TableView_Disc.getItems();
+            Disc.remove(TableView_Disc.getSelectionModel().getFocusedIndex());
+            TableView_Disc.refresh();
+        });
+
+        AddToBase.setOnAction(actionEvent -> {
+            Stage stage = new Stage();
+            stage.setTitle("");
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("gui/AddDiscipline.fxml"));
+            Scene scene = null;
+            try {
+                scene = new Scene(fxmlLoader.load(), 470, 234);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.show();
+        });
+
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///                                               Успішність                                                 ///
@@ -371,7 +404,13 @@ public class ControllerEduProcessCuration {
 
         Student_column.setCellValueFactory(new PropertyValueFactory<>("name"));
 
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Student_Table.setEditable(true);
         pred_column.setCellValueFactory(new PropertyValueFactory<>("disc"));
+        pred_column.setEditable(true);
+        pred_column.setOnEditCommit(event -> {
+            alert.showAndWait();
+        });
         semestr_column.setCellValueFactory(new PropertyValueFactory<>("sem"));
         hour_column.setCellValueFactory(new PropertyValueFactory<>("hh"));
         zal_column.setCellValueFactory(new PropertyValueFactory<>("zal"));
@@ -379,7 +418,7 @@ public class ControllerEduProcessCuration {
         KR_column.setCellValueFactory(new PropertyValueFactory<>("kr"));
         KP_column.setCellValueFactory(new PropertyValueFactory<>("kp"));
         RGR_column.setCellValueFactory(new PropertyValueFactory<>("rgr"));
-        pred_column.setEditable(true);
+
 
 
         GroupChoice.setOnAction(actionEvent->{
@@ -497,6 +536,7 @@ public class ControllerEduProcessCuration {
                     List<String> IdOfEduProgram = new ArrayList<>();
                     ResultSet IdOfEduProgram_rs = db.EduProgram();
                     getInfo(IdOfEduProgram, IdOfEduProgram_rs, "IdOfEducationalProgram");
+                    System.out.println(IdOfEduProgram.size());
                     IdEduProgram = IdOfEduProgram.get(0);
                     List<String> IdOfSpec = new ArrayList<>();
                     ResultSet IdOfSpec_rs = db.Spec_ID_For_Edu();
@@ -696,5 +736,4 @@ public class ControllerEduProcessCuration {
         getInfo(group_name, group_name_rs, "GroupId");
         GroupID = group_name.get(0);
     }
-
 }

@@ -217,7 +217,7 @@ public class DB_EduProcess {
 //
     public static ResultSet get_all_discipline(){
         ResultSet resultSet = null;
-        String query = "Select DisciplineId, NumberOfSemester, Hours, Test, Exam, Coursework, CourseProject, CalculationGraphicWork from EducationalPlan where IdOfStudent = '" + Student_FO + "';";
+        String query = "Select Discipline.NameOfDiscipline_ukr, NumberOfSemester, Hours, Test, Exam, Coursework, CourseProject, CalculationGraphicWork from EducationalPlan, Discipline where EducationalPlan.DisciplineId = Discipline.DisciplineId and IdOfStudent = '" + Student_FO + "';";
         try {
             PreparedStatement prSt = getConnection().prepareStatement(query);
             resultSet = prSt.executeQuery();

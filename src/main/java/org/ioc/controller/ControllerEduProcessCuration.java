@@ -132,6 +132,9 @@ public class ControllerEduProcessCuration {
     @FXML
     private TableColumn<?, ?> zal_column;
 
+    @FXML
+    private Button Save;
+
 
     public static String GroupName;
     public static String GroupID;
@@ -178,6 +181,7 @@ public class ControllerEduProcessCuration {
         plan_table_Df_Zalik.setCellValueFactory(new PropertyValueFactory<>("D_Zalik"));
         NumberOfKafedra.setCellValueFactory(new PropertyValueFactory<>("KF"));
         NumberOfDiscipline.setCellValueFactory(new PropertyValueFactory<>("NumberOfDiscipline"));
+        ObservableList<Table_Edu> EduUp = FXCollections.observableArrayList();
 
         DB_EduProcess db = new DB_EduProcess();
 
@@ -223,15 +227,18 @@ public class ControllerEduProcessCuration {
         TableV_Search_D.setItems(sortedData);
 
 
-        ObservableList<Table_Edu> DiscInTableOfEduPlan = FXCollections.observableArrayList();
+
 
         Button_Add_D.setOnAction(actionEvent -> {
-            DiscInTableOfEduPlan.add(new Table_Edu((TableV_Search_D.getItems().get(TableV_Search_D.getSelectionModel().getFocusedIndex()).getNameOfDisc()).replace("'", "`")));
-            DiscInTableOfEduPlan.get(DiscInTableOfEduPlan.size() - 1).setNumberOfDiscipline(String.valueOf(DiscInTableOfEduPlan.size()));
-            TableView_Disc.setItems(DiscInTableOfEduPlan);
+            EduUp.add(new Table_Edu((TableV_Search_D.getItems().get(TableV_Search_D.getSelectionModel().getFocusedIndex()).getNameOfDisc()).replace("'", "`")));
+            EduUp.get(EduUp.size() - 1).setNumberOfDiscipline(String.valueOf(EduUp.size()));
+            TableView_Disc.setItems(EduUp);
         });
 
         performance_choose_group.setOnAction(actionEvent ->{
+            EduUp.clear();
+            TableView_Disc.setItems(EduUp);
+            TableView_Disc.refresh();
             getSemester();
             getGroup();
             List<String> StudentFO = new ArrayList<>();
@@ -245,11 +252,7 @@ public class ControllerEduProcessCuration {
                     "DifferentiatedTest", "Coursework", "CourseProject",
                     "CalculationGraphicWork_4", "CalculationGraphicWork_6", "NumberOfDepartment");
 
-            for (String s : EduPlan){
-                System.out.println(s);
-            }
 
-            ObservableList<Table_Edu> EduUp = FXCollections.observableArrayList();
             for (String s : EduPlan){
                 EduUp.add(new Table_Edu(s.split(";")[0]));
             }
@@ -275,6 +278,10 @@ public class ControllerEduProcessCuration {
         });
 
         choose_session.setOnAction(actionEvent -> {
+            //EduUp.removeAll();
+            EduUp.clear();
+            TableView_Disc.setItems(EduUp);
+            TableView_Disc.refresh();
             getSemester();
             getGroup();
 
@@ -293,7 +300,6 @@ public class ControllerEduProcessCuration {
                 System.out.println(s);
             }
 
-            ObservableList<Table_Edu> EduUp = FXCollections.observableArrayList();
             for (String s : EduPlan){
                 EduUp.add(new Table_Edu(s.split(";")[0]));
             }
@@ -326,7 +332,6 @@ public class ControllerEduProcessCuration {
             if (result.isPresent()){
                 if (result.get() == ButtonType.OK){
                     List<String> DiscIdForSql = new LinkedList<>();
-                    ObservableList<Table_Edu> EduUp = TableView_Disc.getItems();
                     List<String> IdFo = new ArrayList<>();
                     ResultSet IdFo_rs = DB_EduProcess.StudentsIDFO();
                     getInfo(IdFo, IdFo_rs, "IdFO");
@@ -450,6 +455,25 @@ public class ControllerEduProcessCuration {
             getInfoUsp(all_discipline_OL, all_discipline);
 
             Progress_Table.setItems(all_discipline_OL);
+        });
+
+        Save.setOnAction(actionEvent -> {
+            System.out.println("h");
+            List<String> list = new LinkedList<>();
+            for (Table_disc_mark s: Progress_Table.getItems()){
+                NameOfDisc_SQL = s.getDisc();
+                System.out.println(NameOfDisc_SQL);
+                ResultSet rs = DB_EduProcess.DiscID();
+                getInfo(list, rs, "DisciplineId");
+                System.out.println(list.get(0));
+
+
+            }
+
+
+
+
+
         });
 
 
@@ -700,7 +724,7 @@ public class ControllerEduProcessCuration {
                 e.printStackTrace();
             }
             try {
-                list.add(new Table_disc_mark(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+                list.add(new Table_disc_mark(rs.getString(1), rs.getString(2),new TextField(rs.getString(3)) ,new TextField(rs.getString(4)) ,new TextField(rs.getString(5)) , new TextField(rs.getString(6)) , new TextField(rs.getString(7)), new TextField(rs.getString(8))));
             } catch (SQLException e){
                 e.printStackTrace();
             }
@@ -735,5 +759,9 @@ public class ControllerEduProcessCuration {
         ResultSet group_name_rs = DB_EduProcess.GetGroup();
         getInfo(group_name, group_name_rs, "GroupId");
         GroupID = group_name.get(0);
+    }
+
+    public void SaveUsp(){
+
     }
 }

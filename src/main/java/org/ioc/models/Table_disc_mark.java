@@ -1,16 +1,32 @@
 package org.ioc.models;
 
+import javafx.scene.control.TextField;
+
+import java.util.Objects;
+
 public class Table_disc_mark {
-    String disc, sem, hh, zal,ekz,kr,kp,rgr;
-    public Table_disc_mark(String disc, String sem, String hh, String zal, String ekz, String kr, String kp, String rgr){
+    String disc, sem;
+    TextField hh, zal,ekz,kr,kp,rgr;
+    public Table_disc_mark(String disc, String sem, TextField hh, TextField zal, TextField ekz, TextField kr, TextField kp, TextField rgr){
         this.disc = disc;
         this.sem = sem;
         this.hh = hh;
-        this.zal = zal;
-        this.ekz = ekz;
-        this.kr = kr;
-        this.kp = kp;
-        this.rgr = rgr;
+        if (Objects.equals(zal.getText(), "false")){
+            zal.setEditable(false);
+        } else this.zal = zal;
+        if (Objects.equals(ekz.getText(), "false")){
+            ekz.setEditable(false);
+        }else this.ekz = ekz;
+        if (Objects.equals(kr.getText(), "false")){
+            kr.setEditable(false);
+        } else this.kr = kr;
+        if (Objects.equals(kp.getText(), "false")){
+            kp.setEditable(false);
+        } else this.kp = kp;
+        if (Objects.equals(rgr.getText(), "false")){
+            rgr.setEditable(false);
+        } else this.rgr = rgr;
+
     }
 
     public String getDisc() {
@@ -29,51 +45,51 @@ public class Table_disc_mark {
         this.sem = sem;
     }
 
-    public String getHh() {
+    public TextField getHh() {
         return hh;
     }
 
-    public void setHh(String hh) {
+    public void setHh(TextField hh) {
         this.hh = hh;
     }
 
-    public String getZal() {
+    public TextField getZal() {
         return zal;
     }
 
-    public void setZal(String zal) {
+    public void setZal(TextField zal) {
         this.zal = zal;
     }
 
-    public String getEkz() {
+    public TextField getEkz() {
         return ekz;
     }
 
-    public void setEkz(String ekz) {
+    public void setEkz(TextField ekz) {
         this.ekz = ekz;
     }
 
-    public String getKr() {
+    public TextField getKr() {
         return kr;
     }
 
-    public void setKr(String kr) {
+    public void setKr(TextField kr) {
         this.kr = kr;
     }
 
-    public String getKp() {
+    public TextField getKp() {
         return kp;
     }
 
-    public void setKp(String kp) {
+    public void setKp(TextField kp) {
         this.kp = kp;
     }
 
-    public String getRgr() {
+    public TextField getRgr() {
         return rgr;
     }
 
-    public void setRgr(String rgr) {
+    public void setRgr(TextField rgr) {
         this.rgr = rgr;
     }
 }

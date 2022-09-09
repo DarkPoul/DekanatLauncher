@@ -127,12 +127,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="Student_Table" layoutX="14.0" layoutY="93.0" prefHeight="610.0" prefWidth="260.0">
+                        <TableView fx:id="Student_Table" layoutX="14.0" layoutY="93.0" prefHeight="580.0" prefWidth="260.0">
                           <columns>
                             <TableColumn fx:id="Student_column" prefWidth="260.0" text="Призвище І. П." />
                           </columns>
                         </TableView>
-                        <TableView fx:id="Progress_Table" layoutX="299.0" layoutY="93.0" prefHeight="610.0" prefWidth="709.0">
+                        <TableView fx:id="Progress_Table" layoutX="299.0" layoutY="93.0" prefHeight="580.0" prefWidth="709.0">
                           <columns>
                             <TableColumn fx:id="pred_column" prefWidth="196.0" text="Предмети" />
                             <TableColumn fx:id="semestr_column" prefWidth="84.0" text="Семестр" />
@@ -157,6 +157,7 @@
                               <ChoiceBox fx:id="GroupChoice" prefWidth="160.0" />
                            </children>
                         </VBox>
+                        <Button fx:id="Save" layoutX="898.0" layoutY="683.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Зберегти" />
                      </children>
                   </AnchorPane>
             </content>

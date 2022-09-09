@@ -15,7 +15,7 @@ public class DB_AddDisc {
     }
 
     public void AddDisc(String D_I, String S_N, String N_D) {//Створення методу для отримання даних з бази даних
-        String query = "INSERT INTO Discipline (DepartmentId, ShortNameOfDiscipline, NameOfDiscipline_ukr) Values (" + D_I + ", " + S_N + ", " + N_D + ");";//SQL запит на отримання інформації
+        String query = "INSERT INTO Discipline (DepartmentId, ShortNameOfDiscipline, NameOfDiscipline_ukr) Values ('" + D_I + "', '" + S_N + "', '" + N_D + "');";//SQL запит на отримання інформації
         try {
             PreparedStatement prSt = getConnection().prepareStatement(query);
             prSt.executeUpdate();

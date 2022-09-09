@@ -77,6 +77,9 @@ public class ControllerAddDisc {
                             FullNameOfDisc.setBorder(Border.stroke(Paint.valueOf("Red")));
                         }
                         if (result.get() == ButtonType.OK){
+                            System.out.println(NumberOfDepartment.getText());
+                            System.out.println(ShortNameOfDisc.getText());
+                            System.out.println(FullNameOfDisc.getText());
                             db.AddDisc(NumberOfDepartment.getText(), ShortNameOfDisc.getText(), FullNameOfDisc.getText());
 
                         } else System.out.println("Відміна");

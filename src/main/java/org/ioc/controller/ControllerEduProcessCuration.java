@@ -15,6 +15,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.ioc.DataBase.DB_EduProcess;
@@ -25,6 +27,7 @@ import org.ioc.models.Table_Student;
 import org.ioc.models.Table_disc_mark;
 
 import static org.ioc.DataBase.DB_EduProcess.Disc;
+import static org.ioc.controller.Controller_EduPC_NewDiscipline.newName;
 
 public class ControllerEduProcessCuration {
     @FXML
@@ -408,14 +411,12 @@ public class ControllerEduProcessCuration {
 
 
         Student_column.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        Student_Table.setEditable(true);
         pred_column.setCellValueFactory(new PropertyValueFactory<>("disc"));
-        pred_column.setEditable(true);
-        pred_column.setOnEditCommit(event -> {
-            alert.showAndWait();
-        });
+
+
+
+
+
         semestr_column.setCellValueFactory(new PropertyValueFactory<>("sem"));
         hour_column.setCellValueFactory(new PropertyValueFactory<>("hh"));
         zal_column.setCellValueFactory(new PropertyValueFactory<>("zal"));
@@ -762,6 +763,20 @@ public class ControllerEduProcessCuration {
     }
 
     public void SaveUsp(){
+
+    }
+
+    @FXML
+    public void clickItem(MouseEvent event) throws IOException {
+        if (event.getClickCount() == 2){
+            Stage stage = new Stage();
+            stage.setTitle("");
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("gui/EduPC_NewName.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 260, 330);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.show();
+        }
 
     }
 }

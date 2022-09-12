@@ -132,7 +132,7 @@
                             <TableColumn fx:id="Student_column" prefWidth="260.0" text="Призвище І. П." />
                           </columns>
                         </TableView>
-                        <TableView fx:id="Progress_Table" layoutX="299.0" layoutY="93.0" prefHeight="580.0" prefWidth="709.0">
+                        <TableView fx:id="Progress_Table" layoutX="299.0" layoutY="93.0" onMouseClicked="#clickItem" prefHeight="580.0" prefWidth="709.0">
                           <columns>
                             <TableColumn fx:id="pred_column" prefWidth="196.0" text="Предмети" />
                             <TableColumn fx:id="semestr_column" prefWidth="84.0" text="Семестр" />

@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="446bcd77-3a16-4c57-b9a4-226251071ebf" name="Changes" comment="EduProcessUpdate">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/Controller_EduPC_NewDiscipline.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/EduPC_NewName.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_AddDisc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/DataBase/DB_AddDisc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerAddDisc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerAddDisc.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerEduProcessCuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerEduProcessCuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ioc/models/Table_disc_mark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ioc/models/Table_disc_mark.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/EduProcessCuration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/ioc/gui/EduProcessCuration.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +26,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -109,14 +107,7 @@
       <option name="project" value="LOCAL" />
       <updated>1660725146310</updated>
     </task>
-    <task id="LOCAL-00003" summary="EduProcessUpdate">
-      <created>1662643922325</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1662643922325</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -134,16 +125,18 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Good Update" />
     <MESSAGE value="updateMainWindow" />
-    <MESSAGE value="EduProcessUpdate" />
-    <option name="LAST_COMMIT_MESSAGE" value="EduProcessUpdate" />
+    <option name="LAST_COMMIT_MESSAGE" value="updateMainWindow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerEduProcessCuration.java</url>
-          <line>373</line>
-          <option name="timeStamp" value="6" />
+          <line>379</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/ioc/controller/ControllerEduProcessCuration.java</url>
@@ -151,7 +144,7 @@
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
-          <option name="timeStamp" value="8" />
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

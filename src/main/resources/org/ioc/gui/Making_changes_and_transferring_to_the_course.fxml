@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #a1d1a3;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ioc.controller.ControllerMaking_changes_and_transferring_to_the_course">
+   <children>
+
+      <VBox alignment="CENTER" prefHeight="177.0" prefWidth="600.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#View_and_edit_cards" prefHeight="40.0" prefWidth="400.0" style="-fx-border-color: #000000;" text="Перегляд та правка карток">
+               <font>
+                  <Font name="Arial Black" size="16.0" />
+               </font>
+            </Button>
+            <Separator prefHeight="5.0" prefWidth="200.0" visible="false" />
+            <Button fx:id="Entering_estimates_from_the_information" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" style="-fx-border-color: #000000;" text="Введення оцінок з відомості">
+               <font>
+                  <Font name="Arial Black" size="16.0" />
+               </font>
+            </Button>
+            <Separator prefHeight="5.0" prefWidth="200.0" visible="false" />
+            <Button fx:id="View_debtors" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" style="-fx-border-color: #000000;" text="Перегляд боржників">
+               <font>
+                  <Font name="Arial Black" size="16.0" />
+               </font>
+            </Button>
+            <Separator prefHeight="5.0" prefWidth="200.0" visible="false" />
+            <Button fx:id="Transfer_to_the_course" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" style="-fx-border-color: #000000;" text="Переведення на курс">
+               <font>
+                  <Font name="Arial Black" size="16.0" />
+               </font>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </VBox>
+   </children>
+</VBox>

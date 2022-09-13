@@ -32,7 +32,14 @@ public class ControllerMainWindow {
         stage.show();
     }
 
-    public void Making_changes_and_transferring_to_a_course() {
+    public void Making_changes_and_transferring_to_a_course() throws IOException {
+        Stage stage = new Stage();
+        stage.setTitle("");
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("gui/Making_changes_and_transferring_to_the_course.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void View_and_print_information() {

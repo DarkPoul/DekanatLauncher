@@ -137,6 +137,8 @@ public class ControllerEduProcessCuration {
 
     @FXML
     private Button Save;
+    @FXML
+    private Button SaveForGroup;
 
 
     public static String GroupName;
@@ -375,10 +377,37 @@ public class ControllerEduProcessCuration {
         Button_Diversity_For_Group.setOnAction(ActionEvent -> EduPlanToDB());
 
         Del_expansion.setOnAction(actionEvent ->{
+            if(!Objects.equals(performance_choose_group.getValue(), null)){
+                Stage stage = new Stage();
+                stage.setTitle("");
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("gui/EduProcess_Advanced_Del.fxml"));
+                Scene scene;
+                try {
+                    scene = new Scene(fxmlLoader.load(), 1024, 768);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.show();
+            }
 
         });
         diversity_expansion.setOnAction(actionEvent ->{
-
+            if(!Objects.equals(performance_choose_group.getValue(), null)){
+                Stage stage = new Stage();
+                stage.setTitle("");
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("gui/EduProcess_Advanced_Add.fxml"));
+                Scene scene;
+                try {
+                    scene = new Scene(fxmlLoader.load(), 1024, 768);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.show();
+            }
         });
 
         Button_Remove_Discipline.setOnAction(actionEvent -> {
@@ -447,6 +476,8 @@ public class ControllerEduProcessCuration {
             for (String s : StudentPIB){
                 if (Objects.equals(s.split(";")[0], Student_Table.getItems().get(Student_Table.getSelectionModel().getFocusedIndex()).getName())){
                     Student_FO = s.split(";")[1];
+
+                    System.out.println("idfo = " + Student_FO);
                 }
             }
 
@@ -459,28 +490,57 @@ public class ControllerEduProcessCuration {
         });
 
         Save.setOnAction(actionEvent -> {
-            System.out.println("h");
+            int i = Progress_Table.getSelectionModel().getFocusedIndex();
+            Hours = Progress_Table.getItems().get(i).getHh().getText();
+            Test = Progress_Table.getItems().get(i).getZal().getText();
+            Exam = Progress_Table.getItems().get(i).getEkz().getText();
+            CGW = Progress_Table.getItems().get(i).getRgr().getText();
+            CW = Progress_Table.getItems().get(i).getKr().getText();
+            CP = Progress_Table.getItems().get(i).getKp().getText();
+
             List<String> list = new LinkedList<>();
-            for (Table_disc_mark s: Progress_Table.getItems()){
+            for (Table_disc_mark s: Progress_Table.getItems()) {
                 NameOfDisc_SQL = s.getDisc();
                 System.out.println(NameOfDisc_SQL);
                 ResultSet rs = DB_EduProcess.DiscID();
                 getInfo(list, rs, "DisciplineId");
-                System.out.println(list.get(0));
-
-
+                DisciplineIdSql = list.get(0);
             }
 
-
-
+            db.UpdateUsp();
 
 
         });
 
+        SaveForGroup.setOnAction(actionEvent1 -> {
+            List<String> StudentPIB = new ArrayList<>();
+            ResultSet StudentPIB_rs = DB_EduProcess.StudentsPIB();
+            getInfo(StudentPIB, StudentPIB_rs, "LastName_ukr", "FirstName_ukr", "Surname_ukr", "IdFO");
+            ObservableList<Table_Student> students = FXCollections.observableArrayList();
+            for (String n : StudentPIB){
+                    Student_FO = n.split(";")[1];
+                    System.out.println("idfo = " + Student_FO);
 
+                    int i = Progress_Table.getSelectionModel().getFocusedIndex();
+                    Hours = Progress_Table.getItems().get(i).getHh().getText();
+                    Test = Progress_Table.getItems().get(i).getZal().getText();
+                    Exam = Progress_Table.getItems().get(i).getEkz().getText();
+                    CGW = Progress_Table.getItems().get(i).getRgr().getText();
+                    CW = Progress_Table.getItems().get(i).getKr().getText();
+                    CP = Progress_Table.getItems().get(i).getKp().getText();
 
+                    List<String> list = new LinkedList<>();
+                    for (Table_disc_mark s: Progress_Table.getItems()) {
+                        NameOfDisc_SQL = s.getDisc();
+                        System.out.println(NameOfDisc_SQL);
+                        ResultSet rs = DB_EduProcess.DiscID();
+                        getInfo(list, rs, "DisciplineId");
+                        DisciplineIdSql = list.get(0);
+                    }
+                    db.UpdateUsp();
 
-
+            }
+        });
     }
 
 

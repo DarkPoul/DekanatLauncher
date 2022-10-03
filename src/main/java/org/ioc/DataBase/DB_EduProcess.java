@@ -226,4 +226,23 @@ public class DB_EduProcess {
         }
         return resultSet;
     }
+
+    public void UpdateUsp(){
+        String query = "UPDATE EducationalPlan" +
+                " SET " +
+                "Hours = '" + Hours + "'," +
+                "Test = '" + Test + "', " +
+                "Exam = '" + Exam + "', " +
+                "CalculationGraphicWork= '" + CGW + "', " +
+                "Coursework= '" + CW + "', " +
+                "CourseProject= '" + CP + "'" +
+                "where IdOfStudent = '" + Student_FO + "' and DisciplineId = '" + DisciplineIdSql + "'";//SQL запит на отримання інформації
+
+        try {
+            PreparedStatement prSt = getConnection().prepareStatement(query);
+            prSt.executeUpdate();
+        } catch (SQLException | IOException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

@@ -11,22 +11,26 @@ public class Table_disc_mark {
         this.disc = disc;
         this.sem = sem;
         this.hh = hh;
-        if (Objects.equals(zal.getText(), "false")){
-            zal.setEditable(false);
+        this.zal = zal;
+        if (Objects.equals(this.zal.getText(), "false")){
+            this.zal.setText("");
         } else this.zal = zal;
-        if (Objects.equals(ekz.getText(), "false")){
-            ekz.setEditable(false);
-        }else this.ekz = ekz;
-        if (Objects.equals(kr.getText(), "false")){
-            kr.setEditable(false);
+        this.ekz = ekz;
+        if (Objects.equals(this.ekz.getText(), "false")){
+            this.ekz.setText("");
+        } else this.ekz = ekz;
+        this.kr = kr;
+        if (Objects.equals(this.kr.getText(), "false")){
+            this.kr.setText("");
         } else this.kr = kr;
-        if (Objects.equals(kp.getText(), "false")){
-            kp.setEditable(false);
+        this.kp = kp;
+        if (Objects.equals(this.kp.getText(), "false")){
+            this.kp.setText("");
         } else this.kp = kp;
-        if (Objects.equals(rgr.getText(), "false")){
-            rgr.setEditable(false);
-        } else this.rgr = rgr;
-
+        this.rgr = rgr;
+        if (Objects.equals(this.rgr.getText(), "false")){
+            this.rgr.setText("");
+        }else this.rgr = rgr;
     }
 
     public String getDisc() {

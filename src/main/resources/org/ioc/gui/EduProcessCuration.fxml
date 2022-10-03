@@ -157,7 +157,8 @@
                               <ChoiceBox fx:id="GroupChoice" prefWidth="160.0" />
                            </children>
                         </VBox>
-                        <Button fx:id="Save" layoutX="898.0" layoutY="683.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Зберегти" />
+                        <Button fx:id="Save" layoutX="682.0" layoutY="683.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0" text="Зберегти для студента" />
+                        <Button fx:id="SaveForGroup" layoutX="839.0" layoutY="683.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" text="Зберегти для групи" />
                      </children>
                   </AnchorPane>
             </content>
